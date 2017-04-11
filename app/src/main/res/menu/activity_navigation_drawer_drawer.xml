@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navBasic"
+            android:title="Basic" />
+
+        <item
+            android:id="@+id/navClearHistory"
+            android:title="Clear History" />
+        <item
+            android:id="@+id/navNavigateTo"
+            android:title="Navigate to" />
+        <item
+            android:id="@+id/navBringToFront"
+            android:title="Bring To Front" />
+        <item
+            android:id="@+id/navAnimations"
+            android:title="Animations" />
+        <item
+            android:id="@+id/navStartForResult"
+            android:title="Start For Result" />
+    </group>
+
+</menu>

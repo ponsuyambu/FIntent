@@ -26,6 +26,12 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
     protected T binding;
     private boolean isFirstTimeViewCreated;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG_LIFE_CYCLE,"onCreate - "+this);
+    }
+
     @Nullable
     @Override
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

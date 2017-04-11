@@ -150,14 +150,15 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             ++backStackEntry;
         }
         if(fIntent.hasClearHistoryFlag()){
-
-            final FragmentTransaction ft = getFragmentManager().beginTransaction();
-            final Fragment frg = new Fragment();
-            ft.setCustomAnimations(enterAnimation, exitAnimation,
-                        popEnterAnimation, popExitAnimation);
-            ft.replace(containerId, frg);
-//            ft.addToBackStack(null);
-            ft.commit();
+            if(true){
+                //Why we are committing new fragment >> to solve fragment animation issue.
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                final Fragment frg = new Fragment();
+                ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation);
+                ft.replace(containerId, frg);
+//              ft.addToBackStack(null);
+                ft.commit();
+            }
 
             clearBackStack();
         }

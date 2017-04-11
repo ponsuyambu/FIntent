@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
         setContentView(R.layout.activity_main);
         controller = Factory.getInstance().getController(this);
         controller.setContainerId(R.id.rlContainer);
-        controller.startFragment(new FIntent(FragmentA.class).setAnimate(false));
+        controller.startFragment(new FIntent(FragmentA.class));
 
     }
 
