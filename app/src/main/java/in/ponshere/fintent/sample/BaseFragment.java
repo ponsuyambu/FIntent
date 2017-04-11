@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import in.ponshere.fintent.IFIntentFragment;
+
 /**
  * @author Ponsuyambu
  * @since 11/4/17.
  */
 
-public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
+public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment{
 
     private static final String TAG_LIFE_CYCLE = "LifeCycle";
 

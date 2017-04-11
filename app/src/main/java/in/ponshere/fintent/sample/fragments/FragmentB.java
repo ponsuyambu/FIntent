@@ -18,6 +18,8 @@ import in.ponshere.fintent.sample.databinding.BindingFragmentB;
 
 public class FragmentB extends BaseFragment<BindingFragmentB> {
 
+    public static final String FINTENT_TAG = "FragmentB";
+
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
@@ -25,7 +27,7 @@ public class FragmentB extends BaseFragment<BindingFragmentB> {
             @Override
             public void onClick(View view) {
                 Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragment(new FIntent(FragmentC.class));
+                        .startFragment(new FIntent(FragmentC.class).setTag(FINTENT_TAG));
             }
         });
     }

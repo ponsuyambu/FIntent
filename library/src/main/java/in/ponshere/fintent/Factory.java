@@ -29,7 +29,7 @@ public class Factory {
 
     public FIntentController getController(FIntentControllable controllable){
         if(!controllerHashMap.containsKey(controllable)){
-            Log.d(TAG,"Creating new instance of conroller for "+controllable);
+            Log.d(TAG,"Creating new instance of controller for "+controllable);
             controllerHashMap.put(controllable,new FIntentControllerImpl(controllable));
         }
         return controllerHashMap.get(controllable);

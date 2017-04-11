@@ -61,16 +61,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     }
 
     public void clearBackStack(){
-        getFragmentManager().popBackStackImmediate(""+1,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//        FragmentTransaction transaction;
-//        for (Fragment fragment : getFragmentManager().getFragments()){
-//            Log.d(TAG,fragment != null ? fragment.toString(): "null");
-//            transaction = getFragmentManager().beginTransaction();
-//            if(fragment != null){
-//                transaction.remove(fragment).commit();
-//            }
-//        }
-
+        getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     public int getContainerId() {
@@ -81,6 +72,27 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     @Override
     public void navigateTo(String tagName) {
         getFragmentManager().popBackStackImmediate(tagName,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().findFragmentById(containerId) instanceof IFIntentFragment){
+            IFIntentFragment fragment = (IFIntentFragment) getFragmentManager().findFragmentById(containerId);
+            if(!fragment.onBackPressed()){
+                if(getFragmentManager().getBackStackEntryCount()==1){ //only if 1 item is there, simply finish the activity.
+                    if(isAttachedWithActivity){
+                        containerActivityRef.get().finish();
+                    }else{
+                        //TODO: Handle for fragment
+                    }
+                }else{
+                    ((IFIntentActivity)containerActivityRef.get()).callSuperBackPressed();
+                }
+
+            }
+        }else {
+            ((IFIntentActivity)containerActivityRef.get()).callSuperBackPressed();
+        }
     }
 
     @Override
@@ -115,10 +127,10 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        int enterAnimation;
-        int exitAnimation;
-        int popEnterAnimation;
-        int popExitAnimation;
+        int enterAnimation = 0;
+        int exitAnimation = 0;
+        int popEnterAnimation = 0;
+        int popExitAnimation = 0;
 
         if (fIntent.isAnimate()) {
             enterAnimation = fIntent.getEnterAnimation() == 0 ? R.anim.right_to_left_in
@@ -137,10 +149,26 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         if(!fIntent.hasNoHistoryFlag()){
             ++backStackEntry;
         }
-        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
-            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
-        }
+        if(fIntent.hasClearHistoryFlag()){
 
+            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+            final Fragment frg = new Fragment();
+            ft.setCustomAnimations(enterAnimation, exitAnimation,
+                        popEnterAnimation, popExitAnimation);
+            ft.replace(containerId, frg);
+//            ft.addToBackStack(null);
+            ft.commit();
+
+            clearBackStack();
+        }
+        //!IMPORTANT : if we are not adding item to backstack, that item can't be removed by pop back stack;
+//        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
+//            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
+//        }
+        if(fragmentManager.getBackStackEntryCount() == 0 && !fIntent.hasClearHistoryFlag()){ //For the first transaction, it is weired to show the animation.
+            fragmentTransaction.setCustomAnimations(0,0,0,0);
+        }
+        fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
         fragmentTransaction.replace(containerId,fIntent.getFragment());
 
         return fragmentTransaction;

@@ -24,6 +24,7 @@ public class FIntent {
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({ N0_HISTORY, CLEAR_HISTORY })
     public @interface FLAGS{
+        @Deprecated
         int N0_HISTORY = 101;
         int CLEAR_HISTORY = 102;
     }
@@ -80,8 +81,13 @@ public class FIntent {
         return flags;
     }
 
+    @Deprecated
     boolean hasNoHistoryFlag(){
         return flags.contains(N0_HISTORY);
+    }
+
+    boolean hasClearHistoryFlag(){
+        return flags.contains(CLEAR_HISTORY);
     }
 
     public int getEnterAnimation() {

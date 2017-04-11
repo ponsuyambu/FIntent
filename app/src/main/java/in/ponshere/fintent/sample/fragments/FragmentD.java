@@ -16,14 +16,14 @@ import in.ponshere.fintent.sample.databinding.BindingFragmentD;
  */
 
 public class FragmentD extends BaseFragment<BindingFragmentD> {
-
+    public static final String FINTENT_TAG = "FragmentD";
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Factory.getInstance().getController((FIntentControllable) getActivity()).navigateTo(FragmentA.FINTENT_BS_NAME);
+                Factory.getInstance().getController((FIntentControllable) getActivity()).navigateTo(FragmentB.FINTENT_TAG);
 //                        .startFragment(new FIntent(FragmentD.class));
             }
         });
@@ -34,9 +34,9 @@ public class FragmentD extends BaseFragment<BindingFragmentD> {
         return R.layout.fragment_d;
     }
 
-    @Override
-    public boolean onBackPressed() {
-        Factory.getInstance().getController((FIntentControllable) getActivity()).navigateTo(FragmentA.FINTENT_BS_NAME);
-        return true;
-    }
+//    @Override
+//    public boolean onBackPressed() {
+//        Factory.getInstance().getController((FIntentControllable) getActivity()).navigateTo(FragmentA.FINTENT_BS_NAME);
+//        return true;
+//    }
 }

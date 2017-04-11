@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">fintent</string>
+    <integer name="fintent_fragment_animation_duration">300</integer>
 </resources>
