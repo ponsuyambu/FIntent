@@ -1,0 +1,8 @@
+Design Decisions
+============================
+1. If a fragment is not added to the backstack, it will not be removed from the fragment manager
+even when clear back stack is called. i.e POP_BACK_STACK_INCLUSIVE. It is creating weird problems in fragment life cycle
+also. Due to this reasons, in this design, FRAGMENT IS ALWAYS ADDED TO BACKSTACK. BASED ON THE USE CASE, CORRESPONDING FRAGMENTS
+WILL BE POPPED. This decision solves most of the complex issue with fragment backstack navigation.
+
+2.
