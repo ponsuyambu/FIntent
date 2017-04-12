@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class = "BindingUS1FragmentB"/>
+    <data class = "BindingUS2FragmentD"/>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
-        android:background="@color/bg_fragment_b"
+        android:background="@color/bg_fragment_d"
         android:layout_height="match_parent">
 
         <TextView
             android:layout_marginTop="50dp"
             android:textSize="30dp"
             android:layout_gravity="center_horizontal"
-            android:text="Fragment B"
+            android:text="Fragment D"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
-            android:visibility="gone"
             android:text="Next Fragment"
+            android:visibility="gone"
             android:layout_marginTop="50dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btnNext"

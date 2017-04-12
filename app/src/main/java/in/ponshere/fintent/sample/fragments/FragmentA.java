@@ -47,4 +47,9 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
         super.onFragmentResult(requestCode, resultCode, data);
         Log.d("Fragment A","onFragmentResult(), "+requestCode);
     }
+
+    @Override
+    public String uniqueFIntentTag() {
+        return "fRAGA";
+    }
 }

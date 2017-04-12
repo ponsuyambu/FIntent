@@ -1,4 +1,4 @@
-package in.ponshere.fintent.sample.fragments.basic;
+package in.ponshere.fintent.sample.fragments.clear_history;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,25 +6,26 @@ import android.view.View;
 
 import in.ponshere.fintent.BaseFragment;
 import in.ponshere.fintent.sample.R;
-import in.ponshere.fintent.sample.databinding.BindingUS1FragmentB;
+import in.ponshere.fintent.sample.databinding.BindingUS2FragmentD;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US1FragmentB extends BaseFragment<BindingUS1FragmentB> implements View.OnClickListener{
+public class US2FragmentD extends BaseFragment<BindingUS2FragmentD> implements View.OnClickListener{
 
-    public static final String FINTENT_TAG = "US1FragmentB";
+    public static final String FINTENT_TAG = "US2FragmentD";
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
+        binding.btnNext.setOnClickListener(this);
     }
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.us1_fragment_b;
+        return R.layout.us2_fragment_d;
     }
 
     @Override

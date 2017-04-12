@@ -17,8 +17,8 @@ import in.ponshere.fintent.FIntentController;
 import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.IFIntentActivity;
 import in.ponshere.fintent.sample.R;
-import in.ponshere.fintent.sample.fragments.FragmentA;
 import in.ponshere.fintent.sample.fragments.basic.US1FragmentA;
+import in.ponshere.fintent.sample.fragments.clear_history.US2FragmentA;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,IFIntentActivity {
@@ -85,7 +85,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
             .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
             .setAnimate(false));
         } else if (id == R.id.navClearHistory) {
-            controller.startFragment(new FIntent(FragmentA.class)
+            controller.startFragment(new FIntent(US2FragmentA.class)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimate(false));
         } else if (id == R.id.navNavigateTo) {

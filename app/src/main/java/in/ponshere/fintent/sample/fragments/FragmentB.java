@@ -42,4 +42,8 @@ public class FragmentB extends BaseFragment<BindingFragmentB> {
     }
 
 
+    @Override
+    public String uniqueFIntentTag() {
+        return "FRAGB";
+    }
 }

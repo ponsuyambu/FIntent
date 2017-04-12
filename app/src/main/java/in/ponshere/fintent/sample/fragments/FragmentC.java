@@ -42,4 +42,9 @@ public class FragmentC extends BaseFragment<BindingFragmentC> {
     public int getLayoutResourceId() {
         return R.layout.fragment_c;
     }
+
+    @Override
+    public String uniqueFIntentTag() {
+        return "FRAG C";
+    }
 }

@@ -34,6 +34,11 @@ public class FragmentD extends BaseFragment<BindingFragmentD> {
         return R.layout.fragment_d;
     }
 
+    @Override
+    public String uniqueFIntentTag() {
+        return "FRAG 4";
+    }
+
 //    @Override
 //    public boolean onBackPressed() {
 //        Factory.getInstance().getController((FIntentControllable) getActivity()).navigateTo(FragmentA.FINTENT_BS_NAME);

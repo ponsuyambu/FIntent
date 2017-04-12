@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="bg_fragment_a">#F44336</color>
+    <color name="bg_fragment_b">#9C27B0</color>
+    <color name="bg_fragment_c">#FFC107</color>
+    <color name="bg_fragment_d">#FF5722</color>
+    <color name="bg_fragment_e">#795548</color>
 </resources>
