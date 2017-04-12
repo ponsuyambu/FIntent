@@ -127,4 +127,9 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
     public boolean onBackPressed(){
         return false;
     }
+
+    @Override
+    public void onFragmentResult(int resultCode, Bundle data) {
+
+    }
 }

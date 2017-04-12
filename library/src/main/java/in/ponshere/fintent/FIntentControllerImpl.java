@@ -1,6 +1,7 @@
 package in.ponshere.fintent;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -96,13 +97,30 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     }
 
     @Override
+    public void finish() {
+        getFragmentManager().popBackStackImmediate();
+    }
+
+    @Override
+    public void setResult(Fragment targetFragment, int resultCode, Bundle bundle) {
+        finish();
+        IFIntentFragment fIntentFragment = (IFIntentFragment) targetFragment;
+        fIntentFragment.onFragmentResult(resultCode,bundle);
+    }
+
+    @Override
     public int startFragment(FIntent fIntent) {
+        return startFragmentForResult(null,fIntent);
+    }
+
+    @Override
+    public int startFragmentForResult(IFIntentFragment target, FIntent fIntent) {
         FragmentTransaction fragmentTransaction = null;
         int uniqueTransactionId = -1;
         if(isAttachedWithActivity){
-            fragmentTransaction = createFragmentTransaction(fIntent,directParentActivityRef.get().getSupportFragmentManager());
+            fragmentTransaction = createFragmentTransaction(fIntent,directParentActivityRef.get().getSupportFragmentManager(),target);
         }else if(isAttachedWithFragment){
-            fragmentTransaction = createFragmentTransaction(fIntent,directFragmentRef.get().getChildFragmentManager());
+            fragmentTransaction = createFragmentTransaction(fIntent,directFragmentRef.get().getChildFragmentManager(),target);
         }
         if(appStateWatcher.isAppVisible()){
             uniqueTransactionId = fragmentTransaction.commit();
@@ -125,7 +143,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         return null;
     }
 
-    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager){
+    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager,IFIntentFragment target){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int enterAnimation = 0;
         int exitAnimation = 0;
@@ -170,7 +188,11 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             fragmentTransaction.setCustomAnimations(0,0,0,0);
         }
         fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
-        fragmentTransaction.replace(containerId,fIntent.getFragment());
+        Fragment fragmentToCommit = fIntent.getFragment();
+        if(target != null){
+            fragmentToCommit.setTargetFragment((Fragment) target,1000);
+        }
+        fragmentTransaction.replace(containerId,fragmentToCommit);
 
         return fragmentTransaction;
     }

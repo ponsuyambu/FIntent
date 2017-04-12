@@ -1,10 +1,10 @@
 package in.ponshere.fintent.sample.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.sample.BaseFragment;
@@ -26,8 +26,11 @@ public class FragmentB extends BaseFragment<BindingFragmentB> {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragment(new FIntent(FragmentC.class).setTag(FINTENT_TAG));
+                getActivity().setResult(Activity.RESULT_OK);
+                Factory.getInstance().getController((FIntentControllable) getActivity()).setResult(getTargetFragment(),Activity.RESULT_OK,null);
+//                ((IFIntentFragment)getTargetFragment()).onFragmentResult(, );
+//                Factory.getInstance().getController((FIntentControllable) getActivity())
+//                        .startFragment(new FIntent(FragmentC.class).setTag(FINTENT_TAG));
             }
         });
     }

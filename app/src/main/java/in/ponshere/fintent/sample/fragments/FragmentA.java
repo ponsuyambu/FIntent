@@ -2,6 +2,7 @@ package in.ponshere.fintent.sample.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import in.ponshere.fintent.FIntent;
@@ -26,8 +27,10 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Factory.getInstance().getController((FIntentControllable) getActivity())
+//                        .startFragment(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
                 Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragment(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
+                        .startFragmentForResult(FragmentA.this,new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
 
             }
         });
@@ -36,5 +39,12 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
     @Override
     public int getLayoutResourceId() {
         return R.layout.fragment_a;
+    }
+
+
+    @Override
+    public void onFragmentResult(int resultCode, Bundle data) {
+        super.onFragmentResult(resultCode, data);
+        Log.d("Fragment A","onFragmentResult()");
     }
 }
