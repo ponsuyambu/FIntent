@@ -3,7 +3,7 @@
     <data class = "BindingUS3FragmentDetails"/>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
-        android:background="@color/bg_fragment_c"
+        android:background="@color/bg_fragment_d"
         android:layout_height="match_parent">
 
         <TextView

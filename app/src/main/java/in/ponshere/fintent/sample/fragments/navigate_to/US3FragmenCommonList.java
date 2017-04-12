@@ -36,6 +36,7 @@ public class US3FragmenCommonList extends BaseFragment<BindingUS3FragmentCommonL
             binding.lblInfo.setText("Fruits List(via Common List)");
         }else{
             type = TYPE_VEGETABLES;
+            getView().setBackgroundColor(getResources().getColor(R.color.bg_fragment_c));
             binding.btnNext.setText("Next Fragment(Details)");
             binding.lblInfo.setText("Veg List(via Common List)");
         }
