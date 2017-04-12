@@ -61,7 +61,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     }
 
-    public void clearBackStack(){
+    void clearBackStack(){
         getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
@@ -102,25 +102,25 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     }
 
     @Override
-    public void setResult(Fragment targetFragment, int resultCode, Bundle bundle) {
+    public void setResult(Fragment targetFragment, int requestCode, int resultCode, Bundle bundle) {
         finish();
         IFIntentFragment fIntentFragment = (IFIntentFragment) targetFragment;
-        fIntentFragment.onFragmentResult(resultCode,bundle);
+        fIntentFragment.onFragmentResult(requestCode, resultCode, bundle);
     }
 
     @Override
     public int startFragment(FIntent fIntent) {
-        return startFragmentForResult(null,fIntent);
+        return startFragmentForResult(fIntent, null, -1 );
     }
 
     @Override
-    public int startFragmentForResult(IFIntentFragment target, FIntent fIntent) {
+    public int startFragmentForResult(FIntent fIntent, IFIntentFragment target, int requestCode) {
         FragmentTransaction fragmentTransaction = null;
         int uniqueTransactionId = -1;
         if(isAttachedWithActivity){
-            fragmentTransaction = createFragmentTransaction(fIntent,directParentActivityRef.get().getSupportFragmentManager(),target);
+            fragmentTransaction = createFragmentTransaction(fIntent,directParentActivityRef.get().getSupportFragmentManager(),target, requestCode);
         }else if(isAttachedWithFragment){
-            fragmentTransaction = createFragmentTransaction(fIntent,directFragmentRef.get().getChildFragmentManager(),target);
+            fragmentTransaction = createFragmentTransaction(fIntent,directFragmentRef.get().getChildFragmentManager(),target, requestCode);
         }
         if(appStateWatcher.isAppVisible()){
             uniqueTransactionId = fragmentTransaction.commit();
@@ -143,7 +143,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         return null;
     }
 
-    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager,IFIntentFragment target){
+    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager,IFIntentFragment target, int requestCode){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int enterAnimation = 0;
         int exitAnimation = 0;
@@ -190,7 +190,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
         Fragment fragmentToCommit = fIntent.getFragment();
         if(target != null){
-            fragmentToCommit.setTargetFragment((Fragment) target,1000);
+            fragmentToCommit.setTargetFragment((Fragment) target,requestCode);
         }
         fragmentTransaction.replace(containerId,fragmentToCommit);
 

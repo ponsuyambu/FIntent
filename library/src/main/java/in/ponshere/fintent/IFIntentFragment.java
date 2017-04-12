@@ -14,5 +14,5 @@ public interface IFIntentFragment extends FIntentControllable {
      */
     boolean onBackPressed();
 
-    void onFragmentResult(int resultCode, Bundle data);
+    void onFragmentResult(int requestCode, int resultCode, Bundle data);
 }

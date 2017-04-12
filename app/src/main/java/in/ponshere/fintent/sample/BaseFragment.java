@@ -129,7 +129,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
     }
 
     @Override
-    public void onFragmentResult(int resultCode, Bundle data) {
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
 
     }
 }

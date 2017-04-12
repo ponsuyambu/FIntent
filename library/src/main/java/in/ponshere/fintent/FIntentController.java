@@ -11,12 +11,15 @@ import android.support.v4.app.Fragment;
 
 public interface FIntentController {
 
+    int RESULT_OK = 11;
+    int RESULT_CANCELLED = 12;
+
     void setContainerId(@IdRes int containerId);
     @IdRes int getContainerId();
 
     int startFragment(FIntent fIntent);
 
-    int startFragmentForResult(IFIntentFragment callerFragment, FIntent fIntent);
+    int startFragmentForResult(FIntent fIntent, IFIntentFragment callerFragment, int requestCode);
 
 //    void clearBackStack();-
 
@@ -26,5 +29,5 @@ public interface FIntentController {
 
     void finish();
 
-    void setResult(Fragment targetFragment, int resultCode, Bundle bundle);
+    void setResult(Fragment targetFragment, int requestCode, int resultCode, Bundle bundle);
 }

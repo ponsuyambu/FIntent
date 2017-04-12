@@ -30,7 +30,7 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
 //                Factory.getInstance().getController((FIntentControllable) getActivity())
 //                        .startFragment(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
                 Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragmentForResult(FragmentA.this,new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
+                        .startFragmentForResult(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME), FragmentA.this, 101);
 
             }
         });
@@ -43,8 +43,8 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
 
 
     @Override
-    public void onFragmentResult(int resultCode, Bundle data) {
-        super.onFragmentResult(resultCode, data);
-        Log.d("Fragment A","onFragmentResult()");
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        Log.d("Fragment A","onFragmentResult(), "+requestCode);
     }
 }

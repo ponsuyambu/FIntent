@@ -6,3 +6,5 @@ also. Due to this reasons, in this design, FRAGMENT IS ALWAYS ADDED TO BACK STAC
 FRAGMENTS WILL BE POPPED OFF. This decision solves most of the complex issues with fragment back stack navigation.
 
 2. An FIntentController only handles the navigation inside a single container.
+
+3. setRetainInstanceState(true) is used by all fragments
