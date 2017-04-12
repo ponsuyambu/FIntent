@@ -1,0 +1,2 @@
+1. Each fragment in the fragment manager can have the unique name(replace method)
+2. Each fragment transaction(startFragment) should have the unique name(addToBackStack)
