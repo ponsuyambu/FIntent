@@ -8,33 +8,37 @@ import android.view.View;
 import in.ponshere.fintent.BaseFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
-import in.ponshere.fintent.sample.databinding.BindingUS2FragmentA;
-import in.ponshere.fintent.sample.fragments.clear_history.US2FragmentB;
+import in.ponshere.fintent.sample.databinding.BindingUS3FragmentA;
+
+import static in.ponshere.fintent.sample.fragments.navigate_to.US3FragmenCommonList.KEY_TYPE;
+import static in.ponshere.fintent.sample.fragments.navigate_to.US3FragmenCommonList.TYPE_FRUITS;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US3FragmentA extends BaseFragment<BindingUS2FragmentA> implements View.OnClickListener{
+public class US3FragmentA extends BaseFragment<BindingUS3FragmentA> implements View.OnClickListener{
 
-    public static final String FINTENT_TAG = "US2FragmentA";
+    public static final String FINTENT_TAG = "US3FragmentA";
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         binding.btnNext.setOnClickListener(this);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Clear History");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Navigate To");
     }
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.us2_fragment_a;
+        return R.layout.us3_fragment_a;
     }
 
     @Override
     public void onClick(View view) {
-        startFragment(new FIntent(US2FragmentB.class));
+        Bundle data = new Bundle();
+        data.putInt(KEY_TYPE,TYPE_FRUITS);
+        startFragment(new FIntent(US3FragmenCommonList.class,data));
     }
 
     @Override

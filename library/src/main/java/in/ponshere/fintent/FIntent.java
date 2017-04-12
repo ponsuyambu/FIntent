@@ -139,6 +139,10 @@ public class FIntent {
         return tag == null ? clazz.getName() : tag;
     }
 
+    String getOriginalTag(){
+        return tag;
+    }
+
     public FIntent setTag(String tag) {
         this.tag = tag;
         return this;

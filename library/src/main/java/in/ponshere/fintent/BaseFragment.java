@@ -54,11 +54,18 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
 
 
     public int startFragment(FIntent fIntent){
-        return getFIntentController().startFragment(fIntent);
+        return getFIntentController().startFragment(updateTagIfNeeded(fIntent));
     }
 
     public int startFragmentForResult(FIntent fIntent, int requestCode){
-        return getFIntentController().startFragmentForResult(fIntent,this,requestCode);
+        return getFIntentController().startFragmentForResult(updateTagIfNeeded(fIntent),this,requestCode);
+    }
+
+    private FIntent updateTagIfNeeded(FIntent fIntent){
+        if(fIntent.getOriginalTag() == null){
+            return fIntent.setTag(uniqueFIntentTag());
+        }
+        return fIntent;
     }
 
     public void navigateTo(String tagName){
