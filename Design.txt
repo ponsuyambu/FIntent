@@ -1,9 +1,9 @@
 Design Decisions
 ============================
-1. If a fragment is not added to the backstack, it will not be removed from the fragment manager
+1. If a fragment is not added to the back stack, it will not be removed from the fragment manager
 even when clear back stack is called. i.e POP_BACK_STACK_INCLUSIVE. It is creating weird problems in fragment life cycle
-also. Due to this reasons, in this design, FRAGMENT IS ALWAYS ADDED TO BACK STACK. BASED ON THE USE CASE, CORRESPONDING
-FRAGMENTS WILL BE POPPED OFF. This decision solves most of the complex issues with fragment back stack navigation.
+also. Due to this reason, in this design, FRAGMENT IS ALWAYS ADDED TO BACK STACK. BASED ON THE USE CASE, CORRESPONDING
+FRAGMENTS WILL BE POPPED FROM BACK STACK. This decision solves most of the complex issues with fragment back stack navigation.
 
 2. An FIntentController only handles the navigation inside a single container.
 

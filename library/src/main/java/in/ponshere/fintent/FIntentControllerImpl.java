@@ -12,6 +12,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
+ * Main controller class which handles the navigation between fragments
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -61,8 +62,13 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     }
 
+    /**
+     * Clears the complete back stack
+     */
     void clearBackStack(){
-        getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        if(getFragmentManager().getBackStackEntryCount() >0){
+            getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 
     public int getContainerId() {

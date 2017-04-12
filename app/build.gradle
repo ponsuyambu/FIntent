@@ -14,6 +14,9 @@ android {
     dataBinding{
         enabled = true
     }
+    sourceSets {
+        main.res.srcDirs += 'src/main/res_us1'
+    }
     buildTypes {
         release {
             minifyEnabled false

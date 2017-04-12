@@ -8,7 +8,7 @@ import android.view.View;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
-import in.ponshere.fintent.sample.BaseFragment;
+import in.ponshere.fintent.BaseFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingFragmentA;
 

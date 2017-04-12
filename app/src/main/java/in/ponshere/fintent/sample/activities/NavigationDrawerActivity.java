@@ -18,6 +18,7 @@ import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.IFIntentActivity;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.fragments.FragmentA;
+import in.ponshere.fintent.sample.fragments.basic.US1FragmentA;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,IFIntentActivity {
@@ -50,12 +51,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
         //FIntent controller setup
         controller = Factory.getInstance().getController(this);
         controller.setContainerId(R.id.rlContainer);
 
         if(savedInstanceState == null){
-            controller.startFragment(new FIntent(FragmentA.class));
+            navigationView.setCheckedItem(R.id.navBasic);
+            controller.startFragment(new FIntent(US1FragmentA.class));
         }
 
     }
@@ -78,7 +81,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navBasic) {
-            controller.startFragment(new FIntent(FragmentA.class)
+            controller.startFragment(new FIntent(US1FragmentA.class)
             .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
             .setAnimate(false));
         } else if (id == R.id.navClearHistory) {

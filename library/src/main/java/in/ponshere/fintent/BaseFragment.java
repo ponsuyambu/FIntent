@@ -1,4 +1,4 @@
-package in.ponshere.fintent.sample;
+package in.ponshere.fintent;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,14 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import in.ponshere.fintent.IFIntentFragment;
-
 /**
  * @author Ponsuyambu
  * @since 11/4/17.
  */
 
-public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment{
+public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment,FIntentController.Result{
 
     private static final String TAG_LIFE_CYCLE = "LifeCycle";
 
@@ -49,6 +47,32 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
         }
         onViewCreated(savedInstanceState);
     }
+
+    public FIntentController getFIntentController(){
+        return Factory.getInstance().getController((FIntentControllable) getActivity());
+    }
+
+
+    public int startFragment(FIntent fIntent){
+        return getFIntentController().startFragment(fIntent);
+    }
+
+    public int startFragmentForResult(FIntent fIntent, int requestCode){
+        return getFIntentController().startFragmentForResult(fIntent,this,requestCode);
+    }
+
+    public void navigateTo(String tagName){
+        getFIntentController().navigateTo(tagName);
+    }
+
+    public void finish(){
+        getFIntentController().finish();
+    }
+
+    public void setResult(int resultCode, Bundle bundle){
+        getFIntentController().setResult(getTargetFragment(), getTargetRequestCode(),resultCode, bundle);
+    }
+
 
     /**
      * When the first time fragment view is created is method will be invoked.
@@ -132,4 +156,5 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
 
     }
+
 }
