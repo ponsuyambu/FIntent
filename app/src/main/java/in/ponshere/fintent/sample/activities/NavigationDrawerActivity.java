@@ -22,6 +22,7 @@ import in.ponshere.fintent.sample.fragments.basic.US1FragmentA;
 import in.ponshere.fintent.sample.fragments.clear_history.US2FragmentA;
 import in.ponshere.fintent.sample.fragments.navigate_to.US3FragmentA;
 import in.ponshere.fintent.sample.fragments.reuse_instance.US4FragmentA;
+import in.ponshere.fintent.sample.fragments.start_for_result.US6FragmentA;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,IFIntentActivity {
@@ -60,8 +61,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
         controller.setContainerId(R.id.rlContainer);
 
         if(savedInstanceState == null){
-            navigationView.setCheckedItem(R.id.navBasic);
-            controller.startFragment(new FIntent(US1FragmentA.class));
+            navigationView.setCheckedItem(R.id.navStartForResult);
+            controller.startFragment(new FIntent(US6FragmentA.class));
         }
 
     }
@@ -104,7 +105,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navStartForResult) {
-
+            controller.startFragment(new FIntent(US6FragmentA.class)
+                    .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
+                    .setAnimationType(FIntent.AnimationType.NONE));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

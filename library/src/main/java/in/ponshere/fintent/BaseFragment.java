@@ -27,6 +27,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Log.d(TAG_LIFE_CYCLE,"onCreate - "+this);
     }
 
@@ -159,6 +160,10 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
      * @return
      */
     public boolean onBackPressed(){
+        if(getTargetFragment() != null){
+            setResult(CANCELLED,null);
+            return true;
+        }
         return false;
     }
 
