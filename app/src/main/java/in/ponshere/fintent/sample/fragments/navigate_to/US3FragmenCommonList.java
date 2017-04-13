@@ -19,6 +19,8 @@ public class US3FragmenCommonList extends BaseFragment<BindingUS3FragmentCommonL
 
     public static final String FINTENT_TAG_FRUITS_LIST = "US3Fragment_Fruits";
     public static final String FINTENT_TAG_VEG_LIST = "US3Fragment_Vegetables";
+    public static final String NAME_FRUITS = "FRUITS";
+    public static final String NAME_VEG = "VEG";
 
     public static final int TYPE_FRUITS = 1;
     public static final int TYPE_VEGETABLES = 2;
@@ -69,5 +71,14 @@ public class US3FragmenCommonList extends BaseFragment<BindingUS3FragmentCommonL
             return FINTENT_TAG_VEG_LIST;
         }
 
+    }
+
+    @Override
+    public String uniqueFragmentName() {
+        if(type == TYPE_FRUITS){
+            return NAME_FRUITS;
+        }else {
+            return NAME_VEG;
+        }
     }
 }
