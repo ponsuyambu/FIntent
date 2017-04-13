@@ -6,7 +6,7 @@ import android.view.View;
 
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingFragmentD;
 
@@ -15,7 +15,7 @@ import in.ponshere.fintent.sample.databinding.BindingFragmentD;
  * @since 11/4/17.
  */
 
-public class FragmentD extends BaseFragment<BindingFragmentD> {
+public class FragmentD extends FIFragment<BindingFragmentD> {
     public static final String FINTENT_TAG = "FragmentD";
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {

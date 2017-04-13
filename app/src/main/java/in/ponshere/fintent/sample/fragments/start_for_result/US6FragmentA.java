@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS6FragmentA;
@@ -16,7 +16,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS6FragmentA;
  * @since 12/4/17.
  */
 
-public class US6FragmentA extends BaseFragment<BindingUS6FragmentA> implements View.OnClickListener{
+public class US6FragmentA extends FIFragment<BindingUS6FragmentA> implements View.OnClickListener{
 
     public static final String FINTENT_TAG = "US6FragmentA";
 

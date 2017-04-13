@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.sample.R;
@@ -17,7 +17,7 @@ import static android.app.Activity.RESULT_OK;
  * @since 11/4/17.
  */
 
-public class FragmentB extends BaseFragment<BindingFragmentB> {
+public class FragmentB extends FIFragment<BindingFragmentB> {
 
     public static final String FINTENT_TAG = "FragmentB";
 

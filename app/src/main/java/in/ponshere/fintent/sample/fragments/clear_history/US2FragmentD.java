@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS2FragmentD;
 
@@ -13,7 +13,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS2FragmentD;
  * @since 12/4/17.
  */
 
-public class US2FragmentD extends BaseFragment<BindingUS2FragmentD> implements View.OnClickListener{
+public class US2FragmentD extends FIFragment<BindingUS2FragmentD> implements View.OnClickListener{
 
     public static final String FINTENT_TAG = "US2FragmentD";
 

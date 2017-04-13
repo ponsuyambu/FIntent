@@ -8,7 +8,7 @@ import android.view.View;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingFragmentA;
 
@@ -17,7 +17,7 @@ import in.ponshere.fintent.sample.databinding.BindingFragmentA;
  * @since 11/4/17.
  */
 
-public class FragmentA extends BaseFragment<BindingFragmentA> {
+public class FragmentA extends FIFragment<BindingFragmentA> {
 
     public static final String FINTENT_BS_NAME = "FragmentA";
 

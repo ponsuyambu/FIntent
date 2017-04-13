@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS3FragmentA;
@@ -18,7 +18,7 @@ import static in.ponshere.fintent.sample.fragments.navigate_to.US3FragmenCommonL
  * @since 12/4/17.
  */
 
-public class US3FragmentA extends BaseFragment<BindingUS3FragmentA> implements View.OnClickListener{
+public class US3FragmentA extends FIFragment<BindingUS3FragmentA> implements View.OnClickListener{
 
     public static final String FINTENT_TAG = "US3FragmentA";
 

@@ -8,7 +8,7 @@ import android.widget.Toast;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentControllable;
 import in.ponshere.fintent.Factory;
-import in.ponshere.fintent.BaseFragment;
+import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingFragmentC;
 
@@ -17,7 +17,7 @@ import in.ponshere.fintent.sample.databinding.BindingFragmentC;
  * @since 11/4/17.
  */
 
-public class FragmentC extends BaseFragment<BindingFragmentC> {
+public class FragmentC extends FIFragment<BindingFragmentC> {
     public static final String FINTENT_TAG = "FragmentC";
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
  * @since 11/4/17.
  */
 
-public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment,FIntentController.Result{
+public abstract class FIFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment,FIntentController.Result{
 
     private static final String TAG_LIFE_CYCLE = "LifeCycle";
 
