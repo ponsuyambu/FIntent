@@ -17,6 +17,7 @@ import in.ponshere.fintent.FIntentController;
 import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.IFIntentActivity;
 import in.ponshere.fintent.sample.R;
+import in.ponshere.fintent.sample.fragments.animations.US5FragmentA;
 import in.ponshere.fintent.sample.fragments.basic.US1FragmentA;
 import in.ponshere.fintent.sample.fragments.clear_history.US2FragmentA;
 import in.ponshere.fintent.sample.fragments.navigate_to.US3FragmentA;
@@ -85,21 +86,23 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if (id == R.id.navBasic) {
             controller.startFragment(new FIntent(US1FragmentA.class)
             .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
-            .setAnimate(false));
+            .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navClearHistory) {
             controller.startFragment(new FIntent(US2FragmentA.class)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
-                    .setAnimate(false));
+                    .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navNavigateTo) {
             controller.startFragment(new FIntent(US3FragmentA.class)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
-                    .setAnimate(false));
+                    .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navReuseFragInstance) {
             controller.startFragment(new FIntent(US4FragmentA.class)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
-                    .setAnimate(false));
+                    .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navAnimations) {
-
+            controller.startFragment(new FIntent(US5FragmentA.class)
+                    .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
+                    .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navStartForResult) {
 
         }

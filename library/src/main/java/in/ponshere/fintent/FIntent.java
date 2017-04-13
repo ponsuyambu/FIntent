@@ -1,7 +1,7 @@
 package in.ponshere.fintent;
 
 import android.os.Bundle;
-import android.support.annotation.AnimatorRes;
+import android.support.annotation.AnimRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static in.ponshere.fintent.FIntent.AnimationType.NONE;
+import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_LEFT_RIGHT;
+import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP;
+import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP_DOWN;
 import static in.ponshere.fintent.FIntent.FLAGS.CLEAR_HISTORY;
 import static in.ponshere.fintent.FIntent.FLAGS.N0_HISTORY;
 
@@ -30,11 +34,25 @@ public class FIntent {
         int CLEAR_HISTORY = 102;
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({ NONE, SLIDE_LEFT_RIGHT,SLIDE_UP,SLIDE_UP_DOWN })
+    public @interface AnimationType{
+        int NONE = 200;
+        int SLIDE_LEFT_RIGHT = 201;
+        int SLIDE_UP = 202;
+        int SLIDE_UP_DOWN = 203;
+    }
 
-    private @AnimatorRes int enterAnimation = 0;
-    private @AnimatorRes int exitAnimation = 0;
-    private @AnimatorRes int popEnterAnimation = 0;
-    private @AnimatorRes int popExitAnimation = 0;
+    static final int ANIMATION_TYPE_IGNORE = -1;
+
+    private int animationType = SLIDE_LEFT_RIGHT;
+
+    private @AnimRes int enterAnimation = 0;
+    private @AnimRes int exitAnimation = 0;
+    private @AnimRes int popEnterAnimation = 0;
+    private @AnimRes int popExitAnimation = 0;
+
+    private int[] animations = null;
 
     private List<Integer> flags = new ArrayList<>();
 
@@ -43,28 +61,30 @@ public class FIntent {
     private Class<? extends Fragment> clazz;
     private Bundle arguments;
 
-    private boolean isAnimate = true;
-
     private String fragmentNameToLookFor;
 
     private String currentFragmentName;
 
     public FIntent(Class<? extends Fragment> clazz) {
         this.clazz = clazz;
+        setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
     public FIntent(Class<? extends Fragment> clazz, Bundle arguments) {
         this.clazz = clazz;
         this.arguments = arguments;
+        setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
     public FIntent(String fragmentNameToLookFor) {
         this.fragmentNameToLookFor = fragmentNameToLookFor;
+        setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
     public FIntent(String fragmentNameToLookFor, Bundle arguments) {
         this.arguments = arguments;
         this.fragmentNameToLookFor = fragmentNameToLookFor;
+        setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
     @Nullable Fragment getFragment(){
@@ -112,46 +132,20 @@ public class FIntent {
         return enterAnimation;
     }
 
-    public FIntent setEnterAnimation(int enterAnimation) {
-        this.enterAnimation = enterAnimation;
-        return this;
-    }
-
     public int getExitAnimation() {
         return exitAnimation;
     }
 
-    public FIntent setExitAnimation(int exitAnimation) {
-        this.exitAnimation = exitAnimation;
-        return this;
-    }
 
     public int getPopEnterAnimation() {
         return popEnterAnimation;
     }
 
-    public FIntent setPopEnterAnimation(int popEnterAnimation) {
-        this.popEnterAnimation = popEnterAnimation;
-        return this;
-    }
 
     public int getPopExitAnimation() {
         return popExitAnimation;
     }
 
-    public FIntent setPopExitAnimation(int popExitAnimation) {
-        this.popExitAnimation = popExitAnimation;
-        return this;
-    }
-
-    boolean isAnimate() {
-        return isAnimate;
-    }
-
-    public FIntent setAnimate(boolean animate) {
-        isAnimate = animate;
-        return this;
-    }
 
     public String getTransactionName() {
         return transactionName == null ? clazz.getName() : transactionName;
@@ -181,5 +175,40 @@ public class FIntent {
 
     boolean hasFragmentNameToLookFor(){
         return fragmentNameToLookFor != null;
+    }
+
+    int getAnimationType() {
+        return animationType;
+    }
+
+    public FIntent setAnimationType(@AnimationType int animationType) {
+        this.animationType = animationType;
+        if(animationType == NONE){
+            enterAnimation = 0;
+            exitAnimation = 0;
+            popEnterAnimation = 0;
+            popExitAnimation = 0;
+        } else if(animationType == SLIDE_LEFT_RIGHT){
+            enterAnimation = R.anim.right_to_left_in;
+            exitAnimation = R.anim.right_to_left_exit;
+            popEnterAnimation = R.anim.left_to_right_in;
+            popExitAnimation = R.anim.left_to_right_exit;
+        } else if(animationType == SLIDE_UP_DOWN){
+            enterAnimation = R.anim.slide_in_up;
+            exitAnimation = R.anim.slide_out_up;
+            popEnterAnimation = R.anim.slide_in_down;
+            popExitAnimation = R.anim.slide_out_down;
+        }
+        return this;
+    }
+
+    public FIntent setCustomAnimations(@AnimRes int enterAnimation, @AnimRes int exitAnimation, @AnimRes int popEnterAnimation, @AnimRes int popExitAnimation) {
+        this.enterAnimation = enterAnimation;
+        this.exitAnimation = exitAnimation;
+        this.popEnterAnimation = popEnterAnimation;
+        this.popExitAnimation = popExitAnimation;
+        this.animationType = ANIMATION_TYPE_IGNORE;
+        return this;
+
     }
 }

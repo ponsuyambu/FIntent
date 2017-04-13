@@ -5,4 +5,4 @@ Features
 3. NAVIGATE TO
 4. ANIMATIONS
 5. START_FRAGMENT_FOR_RESULT
-6.
+6. Fragment commit associated with lifecycle. no more can not be saved after onSaveInstanceState issue.

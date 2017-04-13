@@ -151,24 +151,10 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager,IFIntentFragment target, int requestCode){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        int enterAnimation = 0;
-        int exitAnimation = 0;
-        int popEnterAnimation = 0;
-        int popExitAnimation = 0;
 
-        if (fIntent.isAnimate()) {
-            enterAnimation = fIntent.getEnterAnimation() == 0 ? R.anim.right_to_left_in
-                    : fIntent.getEnterAnimation();
-            exitAnimation = fIntent.getExitAnimation() == 0 ? R.anim.right_to_left_exit
-                    : fIntent.getExitAnimation();
-            popEnterAnimation = fIntent.getPopEnterAnimation() == 0 ? R.anim.left_to_right_in
-                    : fIntent.getPopEnterAnimation();
-            popExitAnimation = fIntent.getPopExitAnimation() == 0 ? R.anim.left_to_right_exit
-                    : fIntent.getPopExitAnimation();
+        fragmentTransaction = fragmentTransaction.setCustomAnimations(fIntent.getEnterAnimation(), fIntent.getExitAnimation(),
+                fIntent.getPopEnterAnimation(), fIntent.getPopExitAnimation());
 
-            fragmentTransaction = fragmentTransaction.setCustomAnimations(enterAnimation, exitAnimation,
-                    popEnterAnimation, popExitAnimation);
-        }
 
         if(!fIntent.hasNoHistoryFlag()){
             ++backStackEntry;
@@ -180,7 +166,8 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
                 //Why we are committing new empty fragment >> to solve fragment animation issue.
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 final Fragment frg = new Fragment();
-                ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation);
+                ft.setCustomAnimations(fIntent.getEnterAnimation(), fIntent.getExitAnimation(),
+                        fIntent.getPopEnterAnimation(), fIntent.getPopExitAnimation());
                 ft.replace(containerId, frg);
                 ft.commit();
                 clearBackStack();
