@@ -174,17 +174,17 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             ++backStackEntry;
         }
         if(fIntent.hasClearHistoryFlag()){
-            if(true){
-                //Why we are committing new fragment >> to solve fragment animation issue.
+            if(fIntent.hasFragmentName()){
+                Log.w(TAG,"Clear stack is not supported with fragment name. Silently ignoring the flag.");
+            }else{
+                //Why we are committing new empty fragment >> to solve fragment animation issue.
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 final Fragment frg = new Fragment();
                 ft.setCustomAnimations(enterAnimation, exitAnimation, popEnterAnimation, popExitAnimation);
                 ft.replace(containerId, frg);
-//              ft.addToBackStack(null);
                 ft.commit();
+                clearBackStack();
             }
-
-            clearBackStack();
         }
         //!IMPORTANT : if we are not adding item to backstack, that item can't be removed by pop back stack;
 //        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
@@ -194,11 +194,18 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             fragmentTransaction.setCustomAnimations(0,0,0,0);
         }
         fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
-        Fragment fragmentToCommit = fIntent.getFragment();
+        Fragment fragmentToCommit;
+        if(fIntent.getFragmentNameToLookFor() != null){
+            fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getTag());
+        }else {
+            fragmentToCommit = fIntent.getFragment();
+        }
         if(target != null){
             fragmentToCommit.setTargetFragment((Fragment) target,requestCode);
         }
-        fragmentTransaction.replace(containerId,fragmentToCommit);
+
+
+        fragmentTransaction.replace(containerId,fragmentToCommit, ((IFIntentFragment)fragmentToCommit).uniqueFragmentName());
 
         return fragmentTransaction;
     }
