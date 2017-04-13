@@ -44,6 +44,10 @@ public class FIntent {
 
     private boolean isAnimate = true;
 
+    private String fragmentNameToLookFor;
+
+    private String currentFragmentName;
+
     public FIntent(Class<? extends Fragment> clazz) {
         this.clazz = clazz;
     }
@@ -51,6 +55,15 @@ public class FIntent {
     public FIntent(Class<? extends Fragment> clazz, Bundle arguments) {
         this.clazz = clazz;
         this.arguments = arguments;
+    }
+
+    public FIntent(String fragmentNameToLookFor) {
+        this.fragmentNameToLookFor = fragmentNameToLookFor;
+    }
+
+    public FIntent(String fragmentNameToLookFor, Bundle arguments) {
+        this.arguments = arguments;
+        this.fragmentNameToLookFor = fragmentNameToLookFor;
     }
 
     @Nullable Fragment getFragment(){
@@ -79,6 +92,10 @@ public class FIntent {
 
     List<Integer> getFlags() {
         return flags;
+    }
+
+    public String getFragmentNameToLookFor() {
+        return fragmentNameToLookFor;
     }
 
     @Deprecated
@@ -146,5 +163,22 @@ public class FIntent {
     public FIntent setTag(String tag) {
         this.tag = tag;
         return this;
+    }
+
+    String getCurrentFragmentName() {
+        return currentFragmentName;
+    }
+
+    public FIntent setCurrentFragmentName(String currentFragmentName) {
+        this.currentFragmentName = currentFragmentName;
+        return this;
+    }
+
+    boolean hasFragmentClass(){
+        return clazz != null;
+    }
+
+    boolean hasFragmentName(){
+        return currentFragmentName != null;
     }
 }
