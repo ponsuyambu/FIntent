@@ -196,7 +196,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
         Fragment fragmentToCommit;
         if(fIntent.getFragmentNameToLookFor() != null){
-            fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getTag());
+            fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getFragmentNameToLookFor());
         }else {
             fragmentToCommit = fIntent.getFragment();
         }

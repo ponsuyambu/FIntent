@@ -18,6 +18,7 @@ android {
         main.res.srcDirs += 'src/main/res_us1'
         main.res.srcDirs += 'src/main/res_us2'
         main.res.srcDirs += 'src/main/res_us3'
+        main.res.srcDirs += 'src/main/res_us4'
     }
     buildTypes {
         release {

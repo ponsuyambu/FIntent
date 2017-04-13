@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data class = "BindingUS4FragmentD"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:background="@color/bg_fragment_d"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Fragment D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="Next Fragment"
+            android:visibility="gone"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btnNext"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

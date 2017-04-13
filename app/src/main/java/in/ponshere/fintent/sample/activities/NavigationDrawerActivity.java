@@ -20,6 +20,7 @@ import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.fragments.basic.US1FragmentA;
 import in.ponshere.fintent.sample.fragments.clear_history.US2FragmentA;
 import in.ponshere.fintent.sample.fragments.navigate_to.US3FragmentA;
+import in.ponshere.fintent.sample.fragments.reuse_instance.US4FragmentA;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,IFIntentActivity {
@@ -93,8 +94,10 @@ public class NavigationDrawerActivity extends AppCompatActivity
             controller.startFragment(new FIntent(US3FragmentA.class)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimate(false));
-        } else if (id == R.id.navBringToFront) {
-
+        } else if (id == R.id.navReuseFragInstance) {
+            controller.startFragment(new FIntent(US4FragmentA.class)
+                    .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
+                    .setAnimate(false));
         } else if (id == R.id.navAnimations) {
 
         } else if (id == R.id.navStartForResult) {
