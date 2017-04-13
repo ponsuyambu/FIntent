@@ -54,16 +54,19 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
 
 
     public int startFragment(FIntent fIntent){
-        return getFIntentController().startFragment(updateTagIfNeeded(fIntent));
+        return getFIntentController().startFragment(updateTagAndNameIfNeeded(fIntent));
     }
 
     public int startFragmentForResult(FIntent fIntent, int requestCode){
-        return getFIntentController().startFragmentForResult(updateTagIfNeeded(fIntent),this,requestCode);
+        return getFIntentController().startFragmentForResult(updateTagAndNameIfNeeded(fIntent),this,requestCode);
     }
 
-    private FIntent updateTagIfNeeded(FIntent fIntent){
+    private FIntent updateTagAndNameIfNeeded(FIntent fIntent){
         if(fIntent.getOriginalTag() == null){
-            return fIntent.setTag(uniqueFIntentTag());
+            fIntent = fIntent.setTag(uniqueFIntentTag());
+        }
+        if(fIntent.getCurrentFragmentName() == null){
+            fIntent = fIntent.setCurrentFragmentName(uniqueFragmentName());
         }
         return fIntent;
     }
@@ -164,4 +167,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
 
     }
 
+    @Override
+    public String uniqueFragmentName() {
+        return getClass().getSimpleName();
+    }
 }

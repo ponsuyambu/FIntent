@@ -22,4 +22,10 @@ public interface IFIntentFragment extends FIntentControllable {
      * @return the fragment should return the unique value which identifies the screen.
      */
     String uniqueFIntentTag();
+
+    /**
+     * Unique name for the fragment, this will be helpful to bring the fragment with the old state.
+     * @return an unique name for the fragment
+     */
+    String uniqueFragmentName();
 }
