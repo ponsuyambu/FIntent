@@ -26,7 +26,7 @@ public class FragmentC extends BaseFragment<BindingFragmentC> {
             @Override
             public void onClick(View view) {
                 Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragment(new FIntent(FragmentD.class).setTag(FINTENT_TAG));
+                        .startFragment(new FIntent(FragmentD.class).setTransactionName(FINTENT_TAG));
 //                .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
             }
         });

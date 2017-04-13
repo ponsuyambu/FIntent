@@ -174,8 +174,8 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             ++backStackEntry;
         }
         if(fIntent.hasClearHistoryFlag()){
-            if(fIntent.hasFragmentName()){
-                Log.w(TAG,"Clear stack is not supported with fragment name. Silently ignoring the flag.");
+            if(fIntent.hasFragmentNameToLookFor()){
+                Log.w(TAG,"Clear history is not supported with fragment name. Silently ignoring the flag.");
             }else{
                 //Why we are committing new empty fragment >> to solve fragment animation issue.
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -188,12 +188,12 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         }
         //!IMPORTANT : if we are not adding item to backstack, that item can't be removed by pop back stack;
 //        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
-//            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
+//            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTransactionName());
 //        }
         if(fragmentManager.getBackStackEntryCount() == 0 && !fIntent.hasClearHistoryFlag()){ //For the first transaction, it is weired to show the animation.
             fragmentTransaction.setCustomAnimations(0,0,0,0);
         }
-        fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTag());
+        fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTransactionName());
         Fragment fragmentToCommit;
         if(fIntent.getFragmentNameToLookFor() != null){
             fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getFragmentNameToLookFor());

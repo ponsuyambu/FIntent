@@ -31,7 +31,7 @@ public class FragmentB extends BaseFragment<BindingFragmentB> {
                 Factory.getInstance().getController((FIntentControllable) getActivity()).setResult(getTargetFragment(), getTargetRequestCode(), OK, null);
 //                ((IFIntentFragment)getTargetFragment()).onFragmentResult(, );
 //                Factory.getInstance().getController((FIntentControllable) getActivity())
-//                        .startFragment(new FIntent(FragmentC.class).setTag(FINTENT_TAG));
+//                        .startFragment(new FIntent(FragmentC.class).setTransactionName(FINTENT_TAG));
             }
         });
     }

@@ -35,7 +35,7 @@ public class US4FragmentC extends BaseFragment<BindingUS4FragmentC> implements V
         int id = view.getId();
         if(id == R.id.btnNext){
             startFragment(new FIntent(US4FragmentA.NAME)
-                    .setTag(US4FragmentC.FINTENT_TAG)
+                    .setTransactionName(US4FragmentC.FINTENT_TAG)
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY));
         }else if(id == R.id.btnNewInstance) {
             startFragment(new FIntent(US4FragmentA.class));

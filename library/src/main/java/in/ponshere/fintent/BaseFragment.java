@@ -63,7 +63,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment i
 
     private FIntent updateTagAndNameIfNeeded(FIntent fIntent){
         if(fIntent.getOriginalTag() == null){
-            fIntent = fIntent.setTag(uniqueFIntentTag());
+            fIntent = fIntent.setTransactionName(uniqueFIntentTag());
         }
         if(fIntent.getCurrentFragmentName() == null){
             fIntent = fIntent.setCurrentFragmentName(uniqueFragmentName());

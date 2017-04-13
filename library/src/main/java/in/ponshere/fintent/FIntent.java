@@ -15,6 +15,7 @@ import static in.ponshere.fintent.FIntent.FLAGS.CLEAR_HISTORY;
 import static in.ponshere.fintent.FIntent.FLAGS.N0_HISTORY;
 
 /**
+ * FIntent class which describes the fragment to be started.
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -37,7 +38,7 @@ public class FIntent {
 
     private List<Integer> flags = new ArrayList<>();
 
-    private String tag; //This tag is used for fragment backstack & fragment manager
+    private String transactionName; //This transactionName is used for fragment backstack & fragment manager
 
     private Class<? extends Fragment> clazz;
     private Bundle arguments;
@@ -152,16 +153,16 @@ public class FIntent {
         return this;
     }
 
-    public String getTag() {
-        return tag == null ? clazz.getName() : tag;
+    public String getTransactionName() {
+        return transactionName == null ? clazz.getName() : transactionName;
     }
 
     String getOriginalTag(){
-        return tag;
+        return transactionName;
     }
 
-    public FIntent setTag(String tag) {
-        this.tag = tag;
+    public FIntent setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
         return this;
     }
 
@@ -178,7 +179,7 @@ public class FIntent {
         return clazz != null;
     }
 
-    boolean hasFragmentName(){
-        return currentFragmentName != null;
+    boolean hasFragmentNameToLookFor(){
+        return fragmentNameToLookFor != null;
     }
 }

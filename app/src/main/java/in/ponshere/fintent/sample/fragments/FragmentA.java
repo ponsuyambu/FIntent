@@ -28,9 +28,9 @@ public class FragmentA extends BaseFragment<BindingFragmentA> {
             @Override
             public void onClick(View view) {
 //                Factory.getInstance().getController((FIntentControllable) getActivity())
-//                        .startFragment(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME));
+//                        .startFragment(new FIntent(FragmentB.class).setTransactionName(FINTENT_BS_NAME));
                 Factory.getInstance().getController((FIntentControllable) getActivity())
-                        .startFragmentForResult(new FIntent(FragmentB.class).setTag(FINTENT_BS_NAME), FragmentA.this, 101);
+                        .startFragmentForResult(new FIntent(FragmentB.class).setTransactionName(FINTENT_BS_NAME), FragmentA.this, 101);
 
             }
         });
