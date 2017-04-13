@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static in.ponshere.fintent.FIntent.AnimationType.NONE;
+import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_OVER_TOP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_LEFT_RIGHT;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP_DOWN;
@@ -35,12 +36,13 @@ public class FIntent {
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({ NONE, SLIDE_LEFT_RIGHT,SLIDE_UP,SLIDE_UP_DOWN })
+    @IntDef({ NONE, SLIDE_LEFT_RIGHT,SLIDE_UP,SLIDE_UP_DOWN, SLIDE_OVER_TOP})
     public @interface AnimationType{
         int NONE = 200;
         int SLIDE_LEFT_RIGHT = 201;
         int SLIDE_UP = 202;
         int SLIDE_UP_DOWN = 203;
+        int SLIDE_OVER_TOP = 204;
     }
 
     static final int ANIMATION_TYPE_IGNORE = -1;
@@ -197,6 +199,11 @@ public class FIntent {
             enterAnimation = R.anim.slide_in_up;
             exitAnimation = R.anim.slide_out_up;
             popEnterAnimation = R.anim.slide_in_down;
+            popExitAnimation = R.anim.slide_out_down;
+        } else if(animationType == SLIDE_OVER_TOP){
+            enterAnimation = R.anim.slide_in_up;
+            exitAnimation = 0;
+            popEnterAnimation = R.anim.hold;
             popExitAnimation = R.anim.slide_out_down;
         }
         return this;

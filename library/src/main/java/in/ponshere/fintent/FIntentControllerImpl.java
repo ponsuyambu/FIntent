@@ -173,6 +173,14 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
                 clearBackStack();
             }
         }
+//        if(fIntent.getAnimationType() == FIntent.AnimationType.SLIDE_OVER_TOP){
+//            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+//            final Fragment frg = new TransparentBackgroundFragment();
+////            ft.setCustomAnimations(fIntent.getEnterAnimation(), fIntent.getExitAnimation(),
+////                    fIntent.getPopEnterAnimation(), fIntent.getPopExitAnimation());
+//            ft.add(containerId, frg);
+//            ft.commit();
+//        }
         //!IMPORTANT : if we are not adding item to backstack, that item can't be removed by pop back stack;
 //        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
 //            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTransactionName());
@@ -192,7 +200,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         }
 
 
-        fragmentTransaction.replace(containerId,fragmentToCommit, ((IFIntentFragment)fragmentToCommit).uniqueFragmentName());
+            fragmentTransaction.replace(containerId,fragmentToCommit, ((IFIntentFragment)fragmentToCommit).uniqueFragmentName());
 
         return fragmentTransaction;
     }
