@@ -16,7 +16,8 @@ Features
  
 Implementation
 --------
-**MainActivity**
+
+**1. Activity changes**
 ```java
 public class MainActivity extends AppCompatActivity implements IFIntentActivity {
     FIntentController controller;
@@ -38,6 +39,37 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
     @Override
     public void callSuperBackPressed() {
         super.onBackPressed();
+    }
+}
+```
+
+2. **Extend FIFragment class**
+
+3. **Directly start using the FIntent APIs.**
+```java
+public class FragmentA extends FIFragment<BindingUS1FragmentA> implements View.OnClickListener{
+
+    public static final String FINTENT_TAG = "FragmentA";
+
+    @Override
+    protected void onViewCreated(@Nullable Bundle savedInstanceState) {
+        super.onViewCreated(savedInstanceState);
+        binding.btnNext.setOnClickListener(this);
+    }
+
+    @Override
+    public int getLayoutResourceId() {
+        return R.layout.fragment_a;
+    }
+
+    @Override
+    public void onClick(View view) {
+        startFragment(new FIntent(US1FragmentB.class));
+    }
+
+    @Override
+    public String uniqueFIntentTag() {
+        return FINTENT_TAG;
     }
 }
 ```
