@@ -76,9 +76,14 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     }
 
 
+    /**
+     * Navigates to the previous FIntent state.
+     * @param fIntentName the name of the FIntent {@link FIntent#FIntent(Class, String)}
+     * @return
+     */
     @Override
-    public void navigateTo(String tagName) {
-        getFragmentManager().popBackStackImmediate(tagName,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    public boolean navigateTo(String fIntentName) {
+        return getFragmentManager().popBackStackImmediate(fIntentName,FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     @Override

@@ -7,7 +7,7 @@ import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentController;
 import in.ponshere.fintent.Factory;
 import in.ponshere.fintent.IFIntentActivity;
-import in.ponshere.fintent.sample.fragments.FragmentA;
+import in.ponshere.fintent.sample.fragments.basic.US1FragmentB;
 
 public class MainActivity extends AppCompatActivity implements IFIntentActivity {
     FIntentController controller;
@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
         setContentView(R.layout.activity_main);
         controller = Factory.getInstance().getController(this);
         controller.setContainerId(R.id.rlContainer);
-        controller.startFragment(new FIntent(FragmentA.class, "initial transaction"));
-
+        controller.startFragment(new FIntent(US1FragmentB.class, "initial transaction"));
     }
 
     @Override

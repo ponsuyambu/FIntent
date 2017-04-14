@@ -112,8 +112,9 @@ public class FIntent {
      *
      * @param fragmentNameToLookFor the fragment name to look for.
      */
-    public FIntent(String fragmentNameToLookFor) {
+    public FIntent(String fragmentNameToLookFor,String fIntentName) {
         this.fragmentNameToLookFor = fragmentNameToLookFor;
+        this.transactionName = fIntentName;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
@@ -207,11 +208,11 @@ public class FIntent {
     }
 
 
-    public String getTransactionName() {
+    String getTransactionName() {
         return transactionName == null ? clazz.getName() : transactionName;
     }
 
-    String getOriginalTag(){
+    String getProvidedTransactionName(){
         return transactionName;
     }
 

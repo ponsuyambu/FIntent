@@ -63,17 +63,14 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     }
 
     private FIntent updateTransactionNameAndFNameIfNeeded(FIntent fIntent){
-        if(fIntent.getOriginalTag() == null){
-            fIntent = fIntent.setTransactionName(uniqueFIntentTag());
-        }
         if(fIntent.getCurrentFragmentName() == null){
             fIntent = fIntent.setCurrentFragmentName(uniqueFragmentName());
         }
         return fIntent;
     }
 
-    public void navigateTo(String tagName){
-        getFIntentController().navigateTo(tagName);
+    public boolean navigateTo(String tagName){
+        return getFIntentController().navigateTo(tagName);
     }
 
     public void finish(){
@@ -176,4 +173,5 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     public String uniqueFragmentName() {
         return getClass().getSimpleName();
     }
+
 }

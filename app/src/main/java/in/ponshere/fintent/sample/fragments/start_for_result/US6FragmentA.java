@@ -10,15 +10,14 @@ import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS6FragmentA;
+import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US6FragmentA extends FIFragment<BindingUS6FragmentA> implements View.OnClickListener{
-
-    public static final String FINTENT_TAG = "US6FragmentA";
+public class US6FragmentA extends FIFragment<BindingUS6FragmentA> implements View.OnClickListener,FIntentNames{
 
     private static final int REQUEST_CODE = 1000;
 
@@ -36,13 +35,9 @@ public class US6FragmentA extends FIFragment<BindingUS6FragmentA> implements Vie
 
     @Override
     public void onClick(View view) {
-        startFragmentForResult(new FIntent(US6FragmentB.class),REQUEST_CODE);
+        startFragmentForResult(new FIntent(US6FragmentB.class,US6FragmentA),REQUEST_CODE);
     }
 
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
-    }
 
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {

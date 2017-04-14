@@ -15,8 +15,6 @@ import in.ponshere.fintent.sample.databinding.BindingUS6FragmentB;
 
 public class US6FragmentB extends FIFragment<BindingUS6FragmentB> implements View.OnClickListener{
 
-    public static final String FINTENT_TAG = "US6FragmentB";
-
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
@@ -39,10 +37,5 @@ public class US6FragmentB extends FIFragment<BindingUS6FragmentB> implements Vie
                 setResult(OK,null);
             }
         }
-    }
-
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
     }
 }

@@ -15,10 +15,8 @@ import in.ponshere.fintent.sample.databinding.BindingUS3FragmentCommonList;
  * @since 12/4/17.
  */
 
-public class US3FragmenCommonList extends FIFragment<BindingUS3FragmentCommonList> implements View.OnClickListener{
+public class US3FragmenCommonList extends FIFragment<BindingUS3FragmentCommonList> implements View.OnClickListener,FIntentNames{
 
-    public static final String FINTENT_TAG_FRUITS_LIST = "US3Fragment_Fruits";
-    public static final String FINTENT_TAG_VEG_LIST = "US3Fragment_Vegetables";
     public static final String NAME_FRUITS = "FRUITS";
     public static final String NAME_VEG = "VEG";
 
@@ -56,19 +54,9 @@ public class US3FragmenCommonList extends FIFragment<BindingUS3FragmentCommonLis
         if(type == TYPE_FRUITS){
             Bundle data = new Bundle();
             data.putInt(KEY_TYPE,TYPE_VEGETABLES);
-            startFragment(new FIntent(US3FragmenCommonList.class,data));
+            startFragment(new FIntent(US3FragmenCommonList.class, FRUITS_SCREEN, data));
         }else{
-            startFragment(new FIntent(US3FragmentDetails.class));
-        }
-
-    }
-
-    @Override
-    public String uniqueFIntentTag() {
-        if(type == TYPE_FRUITS){
-            return FINTENT_TAG_FRUITS_LIST;
-        }else {
-            return FINTENT_TAG_VEG_LIST;
+            startFragment(new FIntent(US3FragmentDetails.class, VEGETABLES_SCREEN));
         }
 
     }

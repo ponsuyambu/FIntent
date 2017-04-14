@@ -67,6 +67,7 @@ public class FragmentA extends FIFragment<BindingFragmentA> implements View.OnCl
         startFragment(new FIntent(US1FragmentB.class));
     }
 
+//TODO: This method has been removed. Update readme.
     @Override
     public String uniqueFIntentTag() {
         return FINTENT_TAG;

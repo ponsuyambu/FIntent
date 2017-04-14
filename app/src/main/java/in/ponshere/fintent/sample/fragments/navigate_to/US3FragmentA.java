@@ -18,9 +18,7 @@ import static in.ponshere.fintent.sample.fragments.navigate_to.US3FragmenCommonL
  * @since 12/4/17.
  */
 
-public class US3FragmentA extends FIFragment<BindingUS3FragmentA> implements View.OnClickListener{
-
-    public static final String FINTENT_TAG = "US3FragmentA";
+public class US3FragmentA extends FIFragment<BindingUS3FragmentA> implements View.OnClickListener,FIntentNames{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -38,11 +36,6 @@ public class US3FragmentA extends FIFragment<BindingUS3FragmentA> implements Vie
     public void onClick(View view) {
         Bundle data = new Bundle();
         data.putInt(KEY_TYPE,TYPE_FRUITS);
-        startFragment(new FIntent(US3FragmenCommonList.class,data));
-    }
-
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
+        startFragment(new FIntent(US3FragmenCommonList.class,US3FragmentA,data));
     }
 }

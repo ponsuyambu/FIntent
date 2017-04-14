@@ -7,15 +7,14 @@ import android.view.View;
 import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS2FragmentD;
+import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US2FragmentD extends FIFragment<BindingUS2FragmentD> implements View.OnClickListener{
-
-    public static final String FINTENT_TAG = "US2FragmentD";
+public class US2FragmentD extends FIFragment<BindingUS2FragmentD> implements View.OnClickListener, FIntentNames{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -31,10 +30,5 @@ public class US2FragmentD extends FIFragment<BindingUS2FragmentD> implements Vie
     @Override
     public void onClick(View view) {
 
-    }
-
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
     }
 }

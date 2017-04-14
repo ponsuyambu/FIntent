@@ -50,7 +50,7 @@ public interface FIntentController {
      * Navigates to the fragment mapped with the tag
      * @param tagName the tag name
      */
-    void navigateTo(String tagName);
+    boolean navigateTo(String tagName);
 
     /**
      * This method has to be invoked by the activity associated with

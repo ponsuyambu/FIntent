@@ -8,15 +8,14 @@ import in.ponshere.fintent.FIFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS4FragmentB;
+import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US4FragmentB extends FIFragment<BindingUS4FragmentB> implements View.OnClickListener{
-
-    public static final String FINTENT_TAG = "US4FragmentB";
+public class US4FragmentB extends FIFragment<BindingUS4FragmentB> implements View.OnClickListener,FIntentNames{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -31,11 +30,7 @@ public class US4FragmentB extends FIFragment<BindingUS4FragmentB> implements Vie
 
     @Override
     public void onClick(View view) {
-        startFragment(new FIntent(US4FragmentC.class));
+        startFragment(new FIntent(US4FragmentC.class,US4FragmentB));
     }
 
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
-    }
 }

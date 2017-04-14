@@ -10,15 +10,15 @@ import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS5FragmentA;
 import in.ponshere.fintent.sample.fragments.basic.US1FragmentB;
+import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
 
 /**
  * @author Ponsuyambu
  * @since 12/4/17.
  */
 
-public class US5FragmentA extends FIFragment<BindingUS5FragmentA> implements View.OnClickListener{
+public class US5FragmentA extends FIFragment<BindingUS5FragmentA> implements View.OnClickListener,FIntentNames{
 
-    public static final String FINTENT_TAG = "US5FragmentA";
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -38,17 +38,12 @@ public class US5FragmentA extends FIFragment<BindingUS5FragmentA> implements Vie
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.btnSlideLR){
-            startFragment(new FIntent(US1FragmentB.class)); //Default animation
+            startFragment(new FIntent(US1FragmentB.class,US5FragmentA)); //Default animation
         }else if(id == R.id.btnSlideUD){
-            startFragment(new FIntent(US1FragmentB.class).setAnimationType(FIntent.AnimationType.SLIDE_UP_DOWN));
+            startFragment(new FIntent(US1FragmentB.class,US5FragmentA).setAnimationType(FIntent.AnimationType.SLIDE_UP_DOWN));
         }else if(id == R.id.btnNoAnimation){
-            startFragment(new FIntent(US1FragmentB.class).setAnimationType(FIntent.AnimationType.NONE));
+            startFragment(new FIntent(US1FragmentB.class,US5FragmentA).setAnimationType(FIntent.AnimationType.NONE));
         }
 
-    }
-
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
     }
 }

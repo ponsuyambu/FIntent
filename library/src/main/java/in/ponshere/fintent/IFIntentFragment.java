@@ -16,13 +16,6 @@ public interface IFIntentFragment extends FIntentControllable {
 
     void onFragmentResult(int requestCode, int resultCode, Bundle data);
 
-    /**
-     * Unique tag which is used for FIntent transactions.
-     * This tag name will be helpful to navigate to the particular position in the navigation.
-     * @return the fragment should return the unique value which identifies the screen.
-     */
-    @Deprecated
-    String uniqueFIntentTag();
 
     /**
      * Unique name for the fragment, this will be helpful to bring the fragment with the old state.
