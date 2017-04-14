@@ -11,7 +11,7 @@ Features
  4. Reuse fragment instance
  5. Animation support
  6. Start fragment for Result
- 7. Auto handling of Fragment commit when app is not foreground.
+ 7. Auto handling of Fragment commit when the app is not in foreground.
  
  
 Implementation
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
 
 3. **Directly start using the FIntent APIs.**
 ```java
-public class FragmentA extends FIFragment<BindingUS1FragmentA> implements View.OnClickListener{
+public class FragmentA extends FIFragment<BindingFragmentA> implements View.OnClickListener{
 
     public static final String FINTENT_TAG = "FragmentA";
 
