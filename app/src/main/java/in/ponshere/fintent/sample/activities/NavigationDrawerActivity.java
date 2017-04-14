@@ -62,7 +62,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         if(savedInstanceState == null){
             navigationView.setCheckedItem(R.id.navStartForResult);
-            controller.startFragment(new FIntent(US6FragmentA.class));
+            controller.startFragment(new FIntent(US6FragmentA.class,"top_fragment"));
         }
 
     }
@@ -85,27 +85,27 @@ public class NavigationDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navBasic) {
-            controller.startFragment(new FIntent(US1FragmentA.class)
+            controller.startFragment(new FIntent(US1FragmentA.class,"top_fragment")
             .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
             .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navClearHistory) {
-            controller.startFragment(new FIntent(US2FragmentA.class)
+            controller.startFragment(new FIntent(US2FragmentA.class,"top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navNavigateTo) {
-            controller.startFragment(new FIntent(US3FragmentA.class)
+            controller.startFragment(new FIntent(US3FragmentA.class,"top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navReuseFragInstance) {
-            controller.startFragment(new FIntent(US4FragmentA.class)
+            controller.startFragment(new FIntent(US4FragmentA.class,"top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navAnimations) {
-            controller.startFragment(new FIntent(US5FragmentA.class)
+            controller.startFragment(new FIntent(US5FragmentA.class,"top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navStartForResult) {
-            controller.startFragment(new FIntent(US6FragmentA.class)
+            controller.startFragment(new FIntent(US6FragmentA.class,"top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         }

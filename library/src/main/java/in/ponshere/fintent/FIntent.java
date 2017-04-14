@@ -56,50 +56,37 @@ public class FIntent {
 
     private List<Integer> flags = new ArrayList<>();
 
-    private String transactionName; //This transactionName as back stack entry nae
+    private String transactionName; // back stack entry name
 
     private Class<? extends Fragment> clazz;
     private Bundle arguments;
 
     private String fragmentNameToLookFor;
 
-    private String currentFragmentName;
-
-    @Deprecated
-    public FIntent(Class<? extends Fragment> clazz) {
-        this.clazz = clazz;
-        setAnimationType(SLIDE_LEFT_RIGHT);
-    }
+    private String currentFragmentName; //fragment manager entry name
 
     /**
      * Creates the new instance of FIntent
      * @param clazz The component class that is to be used for the intent.
-     * @param transactionName the unique transaction name,
+     * @param fIntentName the unique transaction name,
      *                        later this name will be used for fragment pop/navigation.
      */
-    public FIntent(Class<? extends Fragment> clazz,String transactionName) {
+    public FIntent(Class<? extends Fragment> clazz,String fIntentName) {
         this.clazz = clazz;
-        this.transactionName = transactionName;
+        this.transactionName = fIntentName;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
     /**
      * Creates the new instance of FIntent
      * @param clazz The component class that is to be used for the intent.
-     * @param transactionName the unique transaction name,
+     * @param fIntentName the unique transaction name,
      *                        later this name will be used for fragment pop/navigation.
      * @param arguments the arguments to be sent to the next screen.
      */
-    public FIntent(Class<? extends Fragment> clazz,String transactionName,Bundle arguments) {
+    public FIntent(Class<? extends Fragment> clazz,String fIntentName,Bundle arguments) {
         this.clazz = clazz;
-        this.transactionName = transactionName;
-        this.arguments = arguments;
-        setAnimationType(SLIDE_LEFT_RIGHT);
-    }
-
-    @Deprecated
-    public FIntent(Class<? extends Fragment> clazz, Bundle arguments) {
-        this.clazz = clazz;
+        this.transactionName = fIntentName;
         this.arguments = arguments;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
