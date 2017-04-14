@@ -55,14 +55,14 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
 
 
     public int startFragment(FIntent fIntent){
-        return getFIntentController().startFragment(updateTagAndNameIfNeeded(fIntent));
+        return getFIntentController().startFragment(updateTransactionNameAndFNameIfNeeded(fIntent));
     }
 
     public int startFragmentForResult(FIntent fIntent, int requestCode){
-        return getFIntentController().startFragmentForResult(updateTagAndNameIfNeeded(fIntent),this,requestCode);
+        return getFIntentController().startFragmentForResult(updateTransactionNameAndFNameIfNeeded(fIntent),this,requestCode);
     }
 
-    private FIntent updateTagAndNameIfNeeded(FIntent fIntent){
+    private FIntent updateTransactionNameAndFNameIfNeeded(FIntent fIntent){
         if(fIntent.getOriginalTag() == null){
             fIntent = fIntent.setTransactionName(uniqueFIntentTag());
         }

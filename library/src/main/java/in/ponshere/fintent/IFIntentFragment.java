@@ -21,6 +21,7 @@ public interface IFIntentFragment extends FIntentControllable {
      * This tag name will be helpful to navigate to the particular position in the navigation.
      * @return the fragment should return the unique value which identifies the screen.
      */
+    @Deprecated
     String uniqueFIntentTag();
 
     /**

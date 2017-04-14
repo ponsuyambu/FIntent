@@ -12,15 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static in.ponshere.fintent.FIntent.AnimationType.NONE;
-import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_OVER_TOP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_LEFT_RIGHT;
+import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_OVER_TOP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP_DOWN;
 import static in.ponshere.fintent.FIntent.FLAGS.CLEAR_HISTORY;
-import static in.ponshere.fintent.FIntent.FLAGS.N0_HISTORY;
 
 /**
- * FIntent class which describes the fragment to be started.
+ * An FIntent is an abstract description of an operation to be performed. It can be used with {@link FIFragment#startFragment(FIntent)} to launch a Fragment.
+ *
+ * Simply, it describes the fragment to be started.
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -28,10 +30,8 @@ import static in.ponshere.fintent.FIntent.FLAGS.N0_HISTORY;
 public class FIntent {
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({ N0_HISTORY, CLEAR_HISTORY })
+    @IntDef({CLEAR_HISTORY })
     public @interface FLAGS{
-        @Deprecated
-        int N0_HISTORY = 101;
         int CLEAR_HISTORY = 102;
     }
 
@@ -45,7 +45,7 @@ public class FIntent {
         int SLIDE_OVER_TOP = 204;
     }
 
-    static final int ANIMATION_TYPE_IGNORE = -1;
+    private static final int ANIMATION_TYPE_IGNORE = -1;
 
     private int animationType = SLIDE_LEFT_RIGHT;
 
@@ -54,11 +54,9 @@ public class FIntent {
     private @AnimRes int popEnterAnimation = 0;
     private @AnimRes int popExitAnimation = 0;
 
-    private int[] animations = null;
-
     private List<Integer> flags = new ArrayList<>();
 
-    private String transactionName; //This transactionName is used for fragment backstack & fragment manager
+    private String transactionName; //This transactionName as back stack entry nae
 
     private Class<? extends Fragment> clazz;
     private Bundle arguments;
@@ -67,63 +65,123 @@ public class FIntent {
 
     private String currentFragmentName;
 
+    @Deprecated
     public FIntent(Class<? extends Fragment> clazz) {
         this.clazz = clazz;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
+    /**
+     * Creates the new instance of FIntent
+     * @param clazz The component class that is to be used for the intent.
+     * @param transactionName the unique transaction name,
+     *                        later this name will be used for fragment pop/navigation.
+     */
+    public FIntent(Class<? extends Fragment> clazz,String transactionName) {
+        this.clazz = clazz;
+        this.transactionName = transactionName;
+        setAnimationType(SLIDE_LEFT_RIGHT);
+    }
+
+    /**
+     * Creates the new instance of FIntent
+     * @param clazz The component class that is to be used for the intent.
+     * @param transactionName the unique transaction name,
+     *                        later this name will be used for fragment pop/navigation.
+     * @param arguments the arguments to be sent to the next screen.
+     */
+    public FIntent(Class<? extends Fragment> clazz,String transactionName,Bundle arguments) {
+        this.clazz = clazz;
+        this.transactionName = transactionName;
+        this.arguments = arguments;
+        setAnimationType(SLIDE_LEFT_RIGHT);
+    }
+
+    @Deprecated
     public FIntent(Class<? extends Fragment> clazz, Bundle arguments) {
         this.clazz = clazz;
         this.arguments = arguments;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
+    /**
+     * Creates a FIntent with the fragment(name) to look for. <br>
+     * Only when you want to start the already created fragment, you should use this constructor.<br>
+     *
+     * Usually this fragment name will be given you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
+     *
+     * @param fragmentNameToLookFor the fragment name to look for.
+     */
     public FIntent(String fragmentNameToLookFor) {
         this.fragmentNameToLookFor = fragmentNameToLookFor;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
+    /**
+     * Creates a FIntent with the fragment(name) to look for. <br>
+     * Only when you want to start the already created fragment, you should use this constructor.<br>
+     *
+     * Usually this fragment name will be given you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
+     *
+     * @param fragmentNameToLookFor the fragment name to look for.
+     * @param arguments
+     */
     public FIntent(String fragmentNameToLookFor, Bundle arguments) {
         this.arguments = arguments;
         this.fragmentNameToLookFor = fragmentNameToLookFor;
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
-    @Nullable Fragment getFragment(){
+    /**
+     * Creates the fragments instance associated with this FIntent.
+     * @return new instance of fragment.
+     */
+    @Nullable Fragment createFragment(){
         Fragment instance = null;
         try {
             instance = clazz.newInstance();
             instance.setArguments(arguments);
         } catch (InstantiationException e) {
+            //TODO: Error handling
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            //TODO: Error handling
             e.printStackTrace();
         }
         return instance;
     }
 
+    /**
+     * Add additional flags to the FIntent
+     * @param flag the new flags to set
+     * @return returns the same instance, for chaining multiple calls into a single statement.
+     */
     public FIntent addFlag(@FLAGS int flag){
         if(!flags.contains(flag))
             flags.add(flag);
         return this;
     }
 
+    /**
+     * Sets arguments which has to be passed to the next screen.
+     * @param bundle the bundle
+     * @return returns the same instance, for chaining multiple calls into a single statement.
+     */
     public FIntent setArguments(Bundle bundle){
         this.arguments = bundle;
         return this;
     }
 
+    /**
+     * Returns the flags associated with this FIntent
+     * @return list of flag valus
+     */
     List<Integer> getFlags() {
         return flags;
     }
 
-    public String getFragmentNameToLookFor() {
+    String getFragmentNameToLookFor() {
         return fragmentNameToLookFor;
-    }
-
-    @Deprecated
-    boolean hasNoHistoryFlag(){
-        return flags.contains(N0_HISTORY);
     }
 
     boolean hasClearHistoryFlag(){

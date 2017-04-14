@@ -155,10 +155,6 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         fragmentTransaction = fragmentTransaction.setCustomAnimations(fIntent.getEnterAnimation(), fIntent.getExitAnimation(),
                 fIntent.getPopEnterAnimation(), fIntent.getPopExitAnimation());
 
-
-        if(!fIntent.hasNoHistoryFlag()){
-            ++backStackEntry;
-        }
         if(fIntent.hasClearHistoryFlag()){
             if(fIntent.hasFragmentNameToLookFor()){
                 Log.w(TAG,"Clear history is not supported with fragment name. Silently ignoring the flag.");
@@ -193,7 +189,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         if(fIntent.getFragmentNameToLookFor() != null){
             fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getFragmentNameToLookFor());
         }else {
-            fragmentToCommit = fIntent.getFragment();
+            fragmentToCommit = fIntent.createFragment();
         }
         if(target != null){
             fragmentToCommit.setTargetFragment((Fragment) target,requestCode);
