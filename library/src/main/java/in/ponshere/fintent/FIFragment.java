@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -150,6 +151,14 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     public void onDestroyView() {
         super.onDestroyView();
         Log.d(TAG_LIFE_CYCLE,"onDestroyView - "+this);
+    }
+
+    /**
+     * Returns the extras bundle sent to this screen.
+     * @return the extra data bundle
+     */
+    public @NonNull Bundle getExtras(){
+        return getArguments() == null ? new Bundle() : getArguments() ;
     }
 
     /**

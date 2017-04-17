@@ -1,11 +1,13 @@
 package in.ponshere.fintent;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.AnimRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import java.io.Serializable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -59,7 +61,7 @@ public class FIntent {
     private String transactionName; // back stack entry name
 
     private Class<? extends Fragment> clazz;
-    private Bundle arguments;
+    private Bundle arguments =  new Bundle();
 
     private String fragmentNameToLookFor;
 
@@ -77,25 +79,12 @@ public class FIntent {
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
-    /**
-     * Creates the new instance of FIntent
-     * @param clazz The component class that is to be used for the intent.
-     * @param fIntentName the unique transaction name,
-     *                        later this name will be used for fragment pop/navigation.
-     * @param arguments the arguments to be sent to the next screen.
-     */
-    public FIntent(Class<? extends Fragment> clazz,String fIntentName,Bundle arguments) {
-        this.clazz = clazz;
-        this.transactionName = fIntentName;
-        this.arguments = arguments;
-        setAnimationType(SLIDE_LEFT_RIGHT);
-    }
 
     /**
      * Creates a FIntent with the fragment(name) to look for. <br>
      * Only when you want to start the already created fragment, you should use this constructor.<br>
      *
-     * Usually this fragment name will be given you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
+     * Usually this fragment name will be given by you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
      *
      * @param fragmentNameToLookFor the fragment name to look for.
      */
@@ -105,20 +94,20 @@ public class FIntent {
         setAnimationType(SLIDE_LEFT_RIGHT);
     }
 
-    /**
-     * Creates a FIntent with the fragment(name) to look for. <br>
-     * Only when you want to start the already created fragment, you should use this constructor.<br>
-     *
-     * Usually this fragment name will be given you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
-     *
-     * @param fragmentNameToLookFor the fragment name to look for.
-     * @param arguments
-     */
-    public FIntent(String fragmentNameToLookFor, Bundle arguments) {
-        this.arguments = arguments;
-        this.fragmentNameToLookFor = fragmentNameToLookFor;
-        setAnimationType(SLIDE_LEFT_RIGHT);
-    }
+//    /**
+//     * Creates a FIntent with the fragment(name) to look for. <br>
+//     * Only when you want to start the already created fragment, you should use this constructor.<br>
+//     *
+//     * Usually this fragment name will be given you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
+//     *
+//     * @param fragmentNameToLookFor the fragment name to look for.
+//     * @param arguments
+//     */
+//    public FIntent(String fragmentNameToLookFor, Bundle arguments) {
+//        this.arguments = arguments;
+//        this.fragmentNameToLookFor = fragmentNameToLookFor;
+//        setAnimationType(SLIDE_LEFT_RIGHT);
+//    }
 
     /**
      * Creates the fragments instance associated with this FIntent.
@@ -151,11 +140,11 @@ public class FIntent {
     }
 
     /**
-     * Sets arguments which has to be passed to the next screen.
+     * Sets addtional extras data which has to be passed to the next screen.
      * @param bundle the bundle
      * @return returns the same instance, for chaining multiple calls into a single statement.
      */
-    public FIntent setArguments(Bundle bundle){
+    public FIntent setExtras(Bundle bundle){
         this.arguments = bundle;
         return this;
     }
@@ -264,4 +253,145 @@ public class FIntent {
         return this;
 
     }
+
+    public FIntent putExtra (String key, Parcelable value){
+        arguments.putParcelable(key,value);
+        return this;
+    }
+
+    public FIntent putExtra (String key, int value){
+        arguments.putInt(key,value);
+        return this;
+    }
+
+    public FIntent putExtra (String key, long[] value){
+        arguments.putLongArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra (String key, byte value){
+        arguments.putByte(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, double[] value){
+        arguments.putDoubleArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, CharSequence value){
+        arguments.putCharSequence(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, boolean[] value){
+        arguments.putBooleanArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, char[] value){
+        arguments.putCharArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, byte[] value){
+        arguments.putByteArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, Parcelable[] value){
+        arguments.putParcelableArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, Bundle value){
+        arguments.putBundle(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, CharSequence[] value){
+        arguments.putCharSequenceArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, float[] value){
+        arguments.putFloatArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, double value){
+        arguments.putDouble(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, int[] value){
+        arguments.putIntArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, String[] value){
+        arguments.putStringArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, short[] value){
+        arguments.putShortArray(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, boolean value){
+        arguments.putBoolean(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, String value){
+        arguments.putString(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, long value){
+        arguments.putLong(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, char value){
+        arguments.putChar(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, Serializable value){
+        arguments.putSerializable(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, float value){
+        arguments.putFloat(key,value);
+        return this;
+    }
+
+    public FIntent putExtra(String key, short value){
+        arguments.putShort(key,value);
+        return this;
+    }
+
+    public FIntent putExtras(Bundle value){
+        arguments.putAll(value);
+        return this;
+    }
+
+    public FIntent putIntegerArrayListExtra(String key, ArrayList<Integer> value){
+        arguments.putIntegerArrayList(key,value);
+        return this;
+    }
+
+    public FIntent putParcellableArrayListExtra(String key, ArrayList<Parcelable> value){
+        arguments.putParcelableArrayList(key,value);
+        return this;
+    }
+
+    public FIntent putStringArrayListExtra(String key, ArrayList<String> value){
+        arguments.putStringArrayList(key,value);
+        return this;
+    }
+
 }

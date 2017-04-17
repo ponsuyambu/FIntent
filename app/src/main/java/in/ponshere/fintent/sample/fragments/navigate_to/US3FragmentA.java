@@ -34,8 +34,9 @@ public class US3FragmentA extends FIFragment<BindingUS3FragmentA> implements Vie
 
     @Override
     public void onClick(View view) {
-        Bundle data = new Bundle();
-        data.putInt(KEY_TYPE,TYPE_FRUITS);
-        startFragment(new FIntent(US3FragmenCommonList.class,US3FragmentA,data));
+        startFragment(
+                new FIntent(US3FragmenCommonList.class,US3FragmentA)
+                .putExtra(KEY_TYPE,TYPE_FRUITS)
+        );
     }
 }

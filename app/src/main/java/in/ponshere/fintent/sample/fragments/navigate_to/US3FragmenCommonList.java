@@ -52,9 +52,7 @@ public class US3FragmenCommonList extends FIFragment<BindingUS3FragmentCommonLis
     @Override
     public void onClick(View view) {
         if(type == TYPE_FRUITS){
-            Bundle data = new Bundle();
-            data.putInt(KEY_TYPE,TYPE_VEGETABLES);
-            startFragment(new FIntent(US3FragmenCommonList.class, FRUITS_SCREEN, data));
+            startFragment(new FIntent(US3FragmenCommonList.class, FRUITS_SCREEN).putExtra(KEY_TYPE,TYPE_VEGETABLES));
         }else{
             startFragment(new FIntent(US3FragmentDetails.class, VEGETABLES_SCREEN));
         }
