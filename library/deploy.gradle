@@ -1,5 +1,6 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 def artifact = new Properties()
 artifact.load(new FileInputStream("library/deploy.settings"))
@@ -42,8 +43,8 @@ if(propFile.exists()) //load only if bintray file is present
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
+    publications = ['MyPublication']
+//    configurations = ['archives']
     pkg {
         repo = "android"
         name = artifact.id
@@ -76,4 +77,40 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+// Create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id "suyambu"
+            name "Ponsuyambu"
+            email "suyambu.vps@gmail.com"
+        }
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+//            artifact sourcesJar
+//            artifact javadocJar
+            groupId artifact.groupId
+            artifactId artifact.id
+            version artifact.version
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'Fragment Intent API to do fragment navigation easily')
+                root.appendNode('name', 'FIntent')
+                root.children().last() + pomConfig
+            }
+        }
+    }
 }

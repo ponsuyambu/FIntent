@@ -1,6 +1,6 @@
 siteUrl = https://github.com/suyambu/FIntent
 gitUrl = https://github.com/suyambu/FIntent
-version = 0.3
+version = 0.3.2
 groupId = in.ponshere
 licenses = Apache-2.0
 id = in.ponshere.fintent
