@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+def artifact = new Properties()
+artifact.load(new FileInputStream("library/deploy.settings"))
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -9,7 +12,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "$artifact.version"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -43,3 +46,4 @@ repositories {
     mavenCentral()
     jcenter()
 }
+apply from: 'deploy.gradle'
