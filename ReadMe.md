@@ -1,4 +1,4 @@
-FIntent
+FIntent [ ![Download](https://api.bintray.com/packages/suyambu/android/in.ponshere.fintent/images/download.svg) ](https://bintray.com/suyambu/android/in.ponshere.fintent/_latestVersion)
 ===================
 This library helps you to implement fragment navigation easily.
 
