@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
+ * The base class for the fragment. All your fragment classes should extend this class.
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -22,6 +24,10 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
 
     private static final String TAG_LIFE_CYCLE = "LifeCycle";
 
+    /**
+     * The View binding instance, which helps to find the views associated with this fragment.
+     * This binding object, eliminates the multiple calls of findViewById.
+     */
     protected T binding;
     private boolean isFirstTimeViewCreated;
 
@@ -50,15 +56,30 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
         onViewCreated(savedInstanceState);
     }
 
+    /**
+     * Returns the FIntentController associated with its parent.
+     * @return the controller instance
+     */
     public FIntentController getFIntentController(){
         return FIFactory.getInstance().getController((FIntentControllable) getActivity());
     }
 
 
+    /**
+     * Starts the fragment (in parent's FIntentController)
+     * @param fIntent the information about the next fragment to be started
+     * @return the unique id which denotes this particular transaction.
+     */
     public int startFragment(FIntent fIntent){
         return getFIntentController().startFragment(updateTransactionNameAndFNameIfNeeded(fIntent));
     }
 
+    /**
+     * Starts the fragment for getting the result.
+     * @param fIntent the information about the next fragment to be started.
+     * @param requestCode the unique request code which helps to get back the results.
+     * @return the unique id which denotes this particular transaction.
+     */
     public int startFragmentForResult(FIntent fIntent, int requestCode){
         return getFIntentController().startFragmentForResult(updateTransactionNameAndFNameIfNeeded(fIntent),this,requestCode);
     }
@@ -70,25 +91,38 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
         return fIntent;
     }
 
-    public boolean navigateTo(String tagName){
-        return getFIntentController().navigateTo(tagName);
+    /**
+     * Navigates to the particular FIntent state.
+     * @param fIntentName the name of the FIntent. {@link FIntent#FIntent(Class, String)}
+     * @return true if the navigation is successful.
+     */
+    public boolean navigateTo(String fIntentName){
+        return getFIntentController().navigateTo(fIntentName);
     }
 
+    /**
+     * Finishes/closes the current fragment
+     */
     public void finish(){
         getFIntentController().finish();
     }
 
+    /**
+     * Sets the result for the fragment which is started by {@link FIFragment#startFragmentForResult(FIntent, int)}
+     * @param resultCode the result code {@link in.ponshere.fintent.FIntentController.Result}
+     * @param bundle the bundle which carries the additional result data
+     */
     public void setResult(int resultCode, Bundle bundle){
         getFIntentController().setResult(getTargetFragment(), getTargetRequestCode(),resultCode, bundle);
     }
 
 
     /**
-     * When the first time fragment view is created is method will be invoked.
+     * When the first time fragment view is created this method will be invoked.
      * This is the ideal place to call the initial web service, setting adapter etc.
      * <br>
      * <br>
-     * To get the view instances, you can use the 'binding' variable, or use getView method directly.
+     * To get the view instances, you can use the {@link FIFragment#binding} variable, or use getView method directly.
      *
      * @param savedInstanceState old saved state of the fragment
      */
@@ -162,8 +196,10 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     }
 
     /**
-     * Is fragment handled the back pressed.
-     * @return
+     * Hardware back button pressed callback for the fragment. The fragment exit logic can be handled inside this
+     * method. (Ex. Exit pop up)
+     * @return return true if you handled it on your own, returning false will pop the fragment, brings back the
+     * previous fragment.
      */
     public boolean onBackPressed(){
         if(getTargetFragment() != null){
@@ -173,11 +209,24 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
         return false;
     }
 
+    /**
+     * Invoked when the target fragment returns the result to the calling fragment. {@link FIFragment#startFragmentForResult(FIntent, int)}
+     * @param requestCode the request code
+     * @param resultCode the result code {@link in.ponshere.fintent.FIntentController.Result}
+     * @param data the additional data which describes the result
+     */
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
 
     }
 
+    /**
+     * The unique fragment name which helps to identify this fragment instance in the fragment manager.
+     * Later, this name will be helpful if you want show the same instance of fragment in your flow.
+     * {@link FIntent#FIntent(String, String)}
+     * @return the unique name. By default the class name of the fragment is used. It is recommended to override this method,
+     * when you want to use {@link FIntent#FIntent(String, String)}
+     */
     @Override
     public String uniqueFragmentName() {
         return getClass().getSimpleName();

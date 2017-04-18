@@ -3,11 +3,12 @@ package in.ponshere.fintent;
 import android.os.Bundle;
 
 /**
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
 
-public interface IFIntentFragment extends FIntentControllable {
+interface IFIntentFragment extends FIntentControllable {
     /**
      * Triggered on activity back press.
      * @return child fragment returns true if it consumes the back press

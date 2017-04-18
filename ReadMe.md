@@ -74,3 +74,7 @@ public class FragmentA extends FIFragment<BindingFragmentA> implements View.OnCl
     }
 }
 ```
+
+Contributing
+=============
+Please fork this repository and contribute back using pull requests. Features can be requested using issues. All code, comments, and critiques are greatly appreciated.

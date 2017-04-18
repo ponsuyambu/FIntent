@@ -1,11 +1,13 @@
 package in.ponshere.fintent;
 
 import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.WeakHashMap;
 
 /**
+ * Factory class used to create the FIntent controller instance.
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -45,7 +47,12 @@ public class FIFactory {
         return controllerHashMap.get(controllable);
     }
 
-    FIntentController getController(FIntentControllable controllable) {
+    /**
+     * Gets the controller associated with this activity/fragment.
+     * @param controllable the controllable instance, normally an activity or fragment.
+     * @return the controller instance
+     */
+    @Nullable FIntentController getController(FIntentControllable controllable) {
         return controllerHashMap.get(controllable);
     }
 }

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 
 /**
+ * Watcher class which tracks the activity's lifecycle. This class is used to store the pending transactions
+ * when the application is in background.
  * @author Ponsuyambu
  * @since 11/4/17.
  */

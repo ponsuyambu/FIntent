@@ -15,7 +15,6 @@ import java.util.List;
 
 import static in.ponshere.fintent.FIntent.AnimationType.NONE;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_LEFT_RIGHT;
-import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_OVER_TOP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP;
 import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP_DOWN;
 import static in.ponshere.fintent.FIntent.FLAGS.CLEAR_HISTORY;
@@ -38,13 +37,13 @@ public class FIntent {
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({ NONE, SLIDE_LEFT_RIGHT,SLIDE_UP,SLIDE_UP_DOWN, SLIDE_OVER_TOP})
+    @IntDef({ NONE, SLIDE_LEFT_RIGHT,SLIDE_UP,SLIDE_UP_DOWN})
     public @interface AnimationType{
         int NONE = 200;
         int SLIDE_LEFT_RIGHT = 201;
         int SLIDE_UP = 202;
         int SLIDE_UP_DOWN = 203;
-        int SLIDE_OVER_TOP = 204;
+//        int SLIDE_OVER_TOP = 204;
     }
 
     private static final int ANIMATION_TYPE_IGNORE = -1;
@@ -192,8 +191,8 @@ public class FIntent {
         return transactionName;
     }
 
-    public FIntent setTransactionName(String transactionName) {
-        this.transactionName = transactionName;
+    public FIntent setName(String fIntentName) {
+        this.transactionName = fIntentName;
         return this;
     }
 
@@ -201,7 +200,7 @@ public class FIntent {
         return currentFragmentName;
     }
 
-    public FIntent setCurrentFragmentName(String currentFragmentName) {
+    FIntent setCurrentFragmentName(String currentFragmentName) {
         this.currentFragmentName = currentFragmentName;
         return this;
     }
@@ -235,12 +234,13 @@ public class FIntent {
             exitAnimation = R.anim.slide_out_up;
             popEnterAnimation = R.anim.slide_in_down;
             popExitAnimation = R.anim.slide_out_down;
-        } else if(animationType == SLIDE_OVER_TOP){
-            enterAnimation = R.anim.slide_in_up;
-            exitAnimation = 0;
-            popEnterAnimation = R.anim.hold;
-            popExitAnimation = R.anim.slide_out_down;
         }
+//        else if(animationType == SLIDE_OVER_TOP){
+//            enterAnimation = R.anim.slide_in_up;
+//            exitAnimation = 0;
+//            popEnterAnimation = R.anim.hold;
+//            popExitAnimation = R.anim.slide_out_down;
+//        }
         return this;
     }
 
