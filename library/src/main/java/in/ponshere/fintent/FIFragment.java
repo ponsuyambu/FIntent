@@ -51,7 +51,7 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     }
 
     public FIntentController getFIntentController(){
-        return Factory.getInstance().getController((FIntentControllable) getActivity());
+        return FIFactory.getInstance().getController((FIntentControllable) getActivity());
     }
 
 

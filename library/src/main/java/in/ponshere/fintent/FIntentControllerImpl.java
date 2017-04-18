@@ -37,6 +37,8 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     private int backStackEntry = 0;
 
+
+
     FIntentControllerImpl(FIntentControllable controllable){
         if(controllable instanceof Fragment || controllable instanceof FragmentActivity){
             if(controllable instanceof  Fragment){
