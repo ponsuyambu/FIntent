@@ -1,4 +1,4 @@
-FIntent [ ![Download](https://api.bintray.com/packages/suyambu/android/in.ponshere.fintent/images/download.svg) ](https://bintray.com/suyambu/android/in.ponshere.fintent/_latestVersion) [![Coverage Status](https://coveralls.io/repos/github/suyambu/FIntent/badge.svg?branch=master)](https://coveralls.io/github/suyambu/FIntent?branch=master)
+FIntent [ ![Download](https://api.bintray.com/packages/suyambu/android/in.ponshere.fintent/images/download.svg) ](https://bintray.com/suyambu/android/in.ponshere.fintent/_latestVersion) [![Build Status](https://travis-ci.org/suyambu/FIntent.svg?branch=master)](https://travis-ci.org/suyambu/FIntent) [![Coverage Status](https://coveralls.io/repos/github/suyambu/FIntent/badge.svg?branch=master)](https://coveralls.io/github/suyambu/FIntent?branch=master)
 ===================
 This library helps you to implement fragment navigation easily.
 
