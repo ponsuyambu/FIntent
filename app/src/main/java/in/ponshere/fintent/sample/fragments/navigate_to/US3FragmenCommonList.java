@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.FIFragment;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS3FragmentCommonList;
@@ -15,7 +15,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS3FragmentCommonList;
  * @since 12/4/17.
  */
 
-public class US3FragmenCommonList extends FIFragment<BindingUS3FragmentCommonList> implements View.OnClickListener,FIntentNames{
+public class US3FragmenCommonList extends FIntentFragment<BindingUS3FragmentCommonList> implements View.OnClickListener,FIntentNames{
 
     public static final String NAME_FRUITS = "FRUITS";
     public static final String NAME_VEG = "VEG";

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.FIFragment;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS6FragmentB;
 
@@ -13,7 +13,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS6FragmentB;
  * @since 12/4/17.
  */
 
-public class US6FragmentB extends FIFragment<BindingUS6FragmentB> implements View.OnClickListener{
+public class US6FragmentB extends FIntentFragment<BindingUS6FragmentB> implements View.OnClickListener{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {

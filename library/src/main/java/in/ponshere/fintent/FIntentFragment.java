@@ -20,7 +20,7 @@ import android.view.ViewGroup;
  * @since 11/4/17.
  */
 
-public abstract class FIFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment,FIntentController.Result{
+public abstract class FIntentFragment<T extends ViewDataBinding> extends Fragment implements IFIntentFragment,FIntentController.Result{
 
     private static final String TAG_LIFE_CYCLE = "LifeCycle";
 
@@ -61,7 +61,7 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
      * @return the controller instance
      */
     public FIntentController getFIntentController(){
-        return FIFactory.getInstance().getController((FIntentControllable) getActivity());
+        return FIntentFactory.getInstance().getController((FIntentControllable) getActivity());
     }
 
 
@@ -108,7 +108,7 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     }
 
     /**
-     * Sets the result for the fragment which is started by {@link FIFragment#startFragmentForResult(FIntent, int)}
+     * Sets the result for the fragment which is started by {@link FIntentFragment#startFragmentForResult(FIntent, int)}
      * @param resultCode the result code {@link in.ponshere.fintent.FIntentController.Result}
      * @param bundle the bundle which carries the additional result data
      */
@@ -122,7 +122,7 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
      * This is the ideal place to call the initial web service, setting adapter etc.
      * <br>
      * <br>
-     * To get the view instances, you can use the {@link FIFragment#binding} variable, or use getView method directly.
+     * To get the view instances, you can use the {@link FIntentFragment#binding} variable, or use getView method directly.
      *
      * @param savedInstanceState old saved state of the fragment
      */
@@ -210,7 +210,7 @@ public abstract class FIFragment<T extends ViewDataBinding> extends Fragment imp
     }
 
     /**
-     * Invoked when the target fragment returns the result to the calling fragment. {@link FIFragment#startFragmentForResult(FIntent, int)}
+     * Invoked when the target fragment returns the result to the calling fragment. {@link FIntentFragment#startFragmentForResult(FIntent, int)}
      * @param requestCode the request code
      * @param resultCode the result code {@link in.ponshere.fintent.FIntentController.Result}
      * @param data the additional data which describes the result

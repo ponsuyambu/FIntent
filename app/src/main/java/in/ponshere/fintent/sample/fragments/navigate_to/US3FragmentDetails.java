@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.FIFragment;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS3FragmentDetails;
 
@@ -13,7 +13,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS3FragmentDetails;
  * @since 12/4/17.
  */
 
-public class US3FragmentDetails extends FIFragment<BindingUS3FragmentDetails> implements View.OnClickListener,FIntentNames{
+public class US3FragmentDetails extends FIntentFragment<BindingUS3FragmentDetails> implements View.OnClickListener,FIntentNames{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {

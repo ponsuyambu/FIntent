@@ -12,20 +12,20 @@ import java.util.WeakHashMap;
  * @since 11/4/17.
  */
 
-public class FIFactory {
+public class FIntentFactory {
 
     private static final String TAG = "FIntentFactory";
 
-    private static FIFactory instance;
+    private static FIntentFactory instance;
     private WeakHashMap<FIntentControllable, FIntentController> controllerHashMap = new WeakHashMap<>();
 
-    private FIFactory(){
+    private FIntentFactory(){
 
     }
 
-    public static FIFactory getInstance() {
+    public static FIntentFactory getInstance() {
         if(instance == null){
-            instance = new FIFactory();
+            instance = new FIntentFactory();
         }
         return instance;
     }

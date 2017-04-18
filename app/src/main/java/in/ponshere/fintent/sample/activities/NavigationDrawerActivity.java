@@ -14,7 +14,7 @@ import android.view.View;
 
 import in.ponshere.fintent.FIntent;
 import in.ponshere.fintent.FIntentController;
-import in.ponshere.fintent.FIFactory;
+import in.ponshere.fintent.FIntentFactory;
 import in.ponshere.fintent.IFIntentActivity;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.fragments.animations.US5FragmentA;
@@ -58,7 +58,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         //FIntent controller setup
         if(savedInstanceState == null || controller == null){
-            controller = FIFactory.getInstance().createFIntentController(this,R.id.rlContainer);
+            controller = FIntentFactory.getInstance().createFIntentController(this,R.id.rlContainer);
         }
 
 

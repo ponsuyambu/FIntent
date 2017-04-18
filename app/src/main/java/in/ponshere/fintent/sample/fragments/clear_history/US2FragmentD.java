@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import in.ponshere.fintent.FIFragment;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS2FragmentD;
 import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
@@ -14,7 +14,7 @@ import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
  * @since 12/4/17.
  */
 
-public class US2FragmentD extends FIFragment<BindingUS2FragmentD> implements View.OnClickListener, FIntentNames{
+public class US2FragmentD extends FIntentFragment<BindingUS2FragmentD> implements View.OnClickListener, FIntentNames{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
