@@ -20,7 +20,7 @@ import static in.ponshere.fintent.FIntent.AnimationType.SLIDE_UP_DOWN;
 import static in.ponshere.fintent.FIntent.FLAGS.CLEAR_HISTORY;
 
 /**
- * An FIntent is an abstract description of an operation to be performed. It can be used with {@link FIFragment#startFragment(FIntent)} to launch a Fragment.
+ * An FIntent is an abstract description of an operation to be performed. It can be used with {@link FIntentFragment#startFragment(FIntent)} to launch a Fragment.
  *
  * Simply, it describes the fragment to be started.
  *
@@ -83,7 +83,7 @@ public class FIntent {
      * Creates a FIntent with the fragment(name) to look for. <br>
      * Only when you want to start the already created fragment, you should use this constructor.<br>
      *
-     * Usually this fragment name will be given by you for each FIFragment. {@link FIFragment#uniqueFragmentName()}
+     * Usually this fragment name will be given by you for each FIFragment. {@link FIntentFragment#uniqueFragmentName()}
      *
      * @param fragmentNameToLookFor the fragment name to look for.
      */
