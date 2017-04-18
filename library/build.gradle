@@ -1,5 +1,26 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'net.researchgate.release'
+
+release {
+    failOnCommitNeeded = false
+    failOnSnapshotDependencies = false
+    failOnUnversionedFiles = false
+    versionPropertyFile = 'deploy.settings'
+    preCommitText = ''
+    preTagCommitMessage = '[Gradle Release Plugin] - pre tag commit: '
+    tagCommitMessage = '[Gradle Release Plugin] - creating tag: '
+    newVersionCommitMessage = '[Gradle Release Plugin] - new version commit: '
+    tagTemplate = '${version}'
+    buildTasks = ['assembleRelease']
+    scmAdapters = [
+            net.researchgate.release.GitAdapter
+    ]
+
+    git {
+        requireBranch = 'master'
+    }
+}
 
 def artifact = new Properties()
 artifact.load(new FileInputStream("library/deploy.settings"))
