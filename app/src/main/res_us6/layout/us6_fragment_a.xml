@@ -21,6 +21,12 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content" />
 
+        <EditText
+            android:id="@+id/edtResult"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </layout>

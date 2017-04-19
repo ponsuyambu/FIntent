@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.EditText;
 
-import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.FIntent;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS6FragmentA;
 import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
@@ -44,9 +44,9 @@ public class US6FragmentA extends FIntentFragment<BindingUS6FragmentA> implement
         super.onFragmentResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE){
             if(resultCode == OK){
-                Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+                ((EditText)getView().findViewById(R.id.edtResult)).setText("OK");
             }else if(resultCode == CANCELLED){
-                Toast.makeText(getContext(), "CANCELLED", Toast.LENGTH_SHORT).show();
+                ((EditText)getView().findViewById(R.id.edtResult)).setText("CANCELLED");
             }
         }
 
