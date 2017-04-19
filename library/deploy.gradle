@@ -2,21 +2,21 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-def artifact = new Properties()
-artifact.load(new FileInputStream("library/deploy.settings"))
+def deploy = new Properties()
+deploy.load(new FileInputStream("library/deploy.settings"))
 
-version=artifact.version
-group=artifact.groupId
+version=deploy.version
+group=deploy.groupId
 
 install {
     repositories.mavenInstaller {
         pom.project {
             packaging 'aar'
-            groupId artifact.groupId
-            artifactId artifact.id
-            version artifact.version
-            name artifact.id // pom.project.name must be same as bintray.pkg.name
-            url artifact.siteUrl
+            groupId deploy.groupId
+            artifactId deploy.id
+            version deploy.version
+            name deploy.id // pom.project.name must be same as bintray.pkg.name
+            url deploy.siteUrl
             inceptionYear '2015' // HARDCODED
             licenses {
                 license { // HARDCODED
@@ -26,9 +26,9 @@ install {
                 }
             }
             scm {
-                connection artifact.gitUrl
-                developerConnection artifact.gitUrl
-                url artifact.siteUrl
+                connection deploy.gitUrl
+                developerConnection deploy.gitUrl
+                url deploy.siteUrl
             }
         }
     }
@@ -47,13 +47,13 @@ bintray {
 //    configurations = ['archives']
     pkg {
         repo = "android"
-        name = artifact.id
-        websiteUrl = artifact.siteUrl
-        vcsUrl = artifact.gitUrl
-        licenses = artifact.licenses.split(',')
+        name = deploy.id
+        websiteUrl = deploy.siteUrl
+        vcsUrl = deploy.gitUrl
+        licenses = deploy.licenses.split(',')
         publish = true
         version {
-            name = artifact.version
+            name = deploy.version
         }
     }
 }
@@ -63,7 +63,7 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc) {
+task javadoc(type: Javadoc) << {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -100,11 +100,13 @@ def pomConfig = {
 publishing {
     publications {
         MyPublication(MavenPublication) {
-//            artifact sourcesJar
-//            artifact javadocJar
-            groupId artifact.groupId
-            artifactId artifact.id
-            version artifact.version
+//            artifact javadoc
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//            artifact androidJavadocsJar
+//            artifact androidJavadocSources
+            groupId deploy.groupId
+            artifactId deploy.id
+            version deploy.version
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', 'Fragment Intent API to do fragment navigation easily')
@@ -114,3 +116,4 @@ publishing {
         }
     }
 }
+
