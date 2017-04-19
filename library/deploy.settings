@@ -3,5 +3,5 @@ gitUrl = https://github.com/suyambu/FIntent
 version = 0.3.3
 groupId = in.ponshere
 licenses = Apache-2.0
-id = in.ponshere.fintent
+id = fintent
 name = FIntent
