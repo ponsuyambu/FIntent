@@ -43,7 +43,7 @@ android:
 before_script:
   - sudo chmod +x gradlew
   - android list targets
-  - echo no | android create avd --force -n test -t 10 --abi armeabi
+#  - echo no | android create avd --force -n test -t 10 --abi armeabi
   - echo no | android create avd --force -n test -t 9 --abi armeabi
   - echo no | android create avd --force -n test -t 8 --abi armeabi
   - echo no | android create avd --force -n test -t 7 --abi armeabi
