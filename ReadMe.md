@@ -86,32 +86,27 @@ public class US1FragmentA extends FIntentFragment<BindingUS1FragmentA> implement
 
 Examples
 ==========
-1. Starting next fragment
---------------------------
+**1. Starting next fragment**
 ```java
 startFragment(new FIntent(US1FragmentB.class,"FragA"));
 ```
 
-2. Exit the current fragment
---------------------------
+**2. Exit the current fragment**
 ```java
 finish()
 ```
 
-3. Clear History
---------------------------
+**3. Clear History**
 ```java
 startFragment(new FIntent(US2FragmentD.class,"FragC").addFlag(FIntent.FLAGS.CLEAR_HISTORY));
 ```
 
-3. Transition Animation
---------------------------
+**4. Transition Animation**
 ```java
 startFragment(new FIntent(US1FragmentB.class,"FragA").setAnimationType(FIntent.AnimationType.SLIDE_UP_DOWN));
 ```
 
-4. Start fragment for result
---------------------------
+**5. Start fragment for result**
 ```java
     static final int REQUEST_CODE = 1000;
 
