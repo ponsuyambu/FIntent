@@ -56,7 +56,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
 
 
-        //FIntent controller setup
+        //################### FIntent controller setup ######################
         if(savedInstanceState == null || controller == null){
             controller = FIntentFactory.getInstance().createFIntentController(this,R.id.rlContainer);
         }
@@ -80,8 +80,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         }
     }
 
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

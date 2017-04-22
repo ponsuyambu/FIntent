@@ -34,6 +34,7 @@ public abstract class FIntentFragment<T extends ViewDataBinding> extends Fragmen
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
 
         Log.d(TAG_LIFE_CYCLE,"onCreate - "+this);
     }
