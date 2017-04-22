@@ -116,6 +116,8 @@ public class UseCasesTest {
         onView(withId(R.id.btnNext)).perform(click());
         onView(withId(R.id.edt)).check(matches(withText("test")));
 
+
+        Espresso.closeSoftKeyboard();
         Espresso.pressBack();
         onView(withText("Fragment C")).check(matches(isDisplayed()));
 
@@ -144,5 +146,16 @@ public class UseCasesTest {
 
     }
 
+
+    @Test
+    public void basicUse_orientation(){
+        onView(withId(in.ponshere.fintent.sample.R.id.drawer_layout)).perform(DrawerActions.open());
+        // Start the screen of your activity.
+        onView(withId(in.ponshere.fintent.sample.R.id.nav_view))
+                .perform(NavigationViewActions.navigateTo(in.ponshere.fintent.sample.R.id.navBasic));
+        onView(withId(in.ponshere.fintent.sample.R.id.btnNext)).perform(click());
+        TestUtils.rotateOrientation(mTasksActivityTestRule);
+        onView(withText("Fragment B")).check(matches(isDisplayed()));
+    }
 
 }

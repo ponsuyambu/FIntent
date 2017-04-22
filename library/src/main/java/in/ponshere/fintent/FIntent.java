@@ -254,22 +254,22 @@ public class FIntent {
 
     }
 
-    public FIntent putExtra (String key, Parcelable value){
+    public FIntent putExtra(String key, Parcelable value){
         arguments.putParcelable(key,value);
         return this;
     }
 
-    public FIntent putExtra (String key, int value){
+    public FIntent putExtra(String key, int value){
         arguments.putInt(key,value);
         return this;
     }
 
-    public FIntent putExtra (String key, long[] value){
+    public FIntent putExtra(String key, long[] value){
         arguments.putLongArray(key,value);
         return this;
     }
 
-    public FIntent putExtra (String key, byte value){
+    public FIntent putExtra(String key, byte value){
         arguments.putByte(key,value);
         return this;
     }

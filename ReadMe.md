@@ -32,7 +32,7 @@ dependencies {
 }
 ```
  
-Implementation
+Usage
 --------
 
 **1. Setup FIntentController**
@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
 }
 ```
 
-2. **Extend FIFragment class**
-
-3. **Directly start using the FIntent APIs.**
+2. **Extend FIntentFragment class and directly start using its APIs**
 ```java
 public class US1FragmentA extends FIntentFragment<BindingUS1FragmentA> implements View.OnClickListener{
 

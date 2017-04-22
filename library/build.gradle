@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'net.researchgate.release'
+apply plugin: 'com.noveogroup.android.check'
 
 release {
     failOnCommitNeeded = false
@@ -43,7 +44,7 @@ android {
     }
 
     dataBinding{
-        enabled = true;
+        enabled = true
     }
 
     buildTypes {

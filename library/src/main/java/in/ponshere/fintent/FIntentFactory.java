@@ -12,7 +12,7 @@ import java.util.WeakHashMap;
  * @since 11/4/17.
  */
 
-public class FIntentFactory {
+public final class FIntentFactory {
 
     private static final String TAG = "FIntentFactory";
 

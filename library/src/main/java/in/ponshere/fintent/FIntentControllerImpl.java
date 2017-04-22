@@ -123,7 +123,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 
     @Override
     public int startFragment(FIntent fIntent) {
-        return startFragmentForResult(fIntent, null, -1 );
+        return startFragmentForResult(fIntent, null, -1);
     }
 
     @Override
