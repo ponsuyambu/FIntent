@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class = "BindingUS6FragmentB"/>
+
+    <data class="BindingUS6FragmentB" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/bg_fragment_b"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Fragment B"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="OK"
-            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/btnOK"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="50dp"
+            android:text="Fragment B"
+            android:textSize="30dp" />
 
         <Button
-            android:text="CANCEL"
-            android:layout_marginTop="5dp"
+            android:id="@+id/btnOK"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="OK" />
+
+        <Button
             android:id="@+id/btnCancel"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="CANCEL" />
 
     </LinearLayout>
 </layout>

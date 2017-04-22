@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class = "BindingUS5FragmentA"/>
+
+    <data class="BindingUS5FragmentA" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/bg_fragment_a"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Fragment A"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Slide Left/Slide Right"
-            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="Fragment A"
+            android:textSize="30dp" />
+
+        <Button
             android:id="@+id/btnSlideLR"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="Slide Left/Slide Right" />
 
         <Button
-            android:text="Slide Up/Down"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
             android:id="@+id/btnSlideUD"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="Slide Up/Down" />
 
         <Button
-            android:text="No Animation"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
             android:id="@+id/btnNoAnimation"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="No Animation" />
 
     </LinearLayout>
 </layout>

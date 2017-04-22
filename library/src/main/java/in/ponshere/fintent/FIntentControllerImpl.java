@@ -13,11 +13,12 @@ import java.util.ArrayList;
 
 /**
  * Main controller class which handles the navigation between fragments
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
 
-class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listener,FragmentManager.OnBackStackChangedListener{
+class FIntentControllerImpl implements FIntentController, AppStateWatcher.Listener, FragmentManager.OnBackStackChangedListener {
 
 
     private static final String TAG = "FIntentController";
@@ -38,19 +39,18 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     private int backStackEntry = 0;
 
 
-
-    FIntentControllerImpl(FIntentControllable controllable){
-        if(controllable instanceof Fragment || controllable instanceof FragmentActivity){
-            if(controllable instanceof  Fragment){
-                containerActivityRef = new WeakReference<>(((Fragment)controllable).getActivity());
+    FIntentControllerImpl(FIntentControllable controllable) {
+        if (controllable instanceof Fragment || controllable instanceof FragmentActivity) {
+            if (controllable instanceof Fragment) {
+                containerActivityRef = new WeakReference<>(((Fragment) controllable).getActivity());
                 isAttachedWithFragment = true;
-                directFragmentRef = new WeakReference<>(((Fragment)controllable));
-            }else{
+                directFragmentRef = new WeakReference<>(((Fragment) controllable));
+            } else {
                 isAttachedWithActivity = true;
-                directParentActivityRef = new WeakReference<>(((FragmentActivity)controllable));
+                directParentActivityRef = new WeakReference<>(((FragmentActivity) controllable));
                 containerActivityRef = directParentActivityRef;
             }
-            if(appStateWatcher == null){ //if application is restarted, instance will be null and this constructor will be invoked properly.
+            if (appStateWatcher == null) { //if application is restarted, instance will be null and this constructor will be invoked properly.
                 appStateWatcher = new AppStateWatcher();
                 containerActivityRef.get().getApplication().registerActivityLifecycleCallbacks(appStateWatcher);
             }
@@ -58,7 +58,7 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
             getFragmentManager().addOnBackStackChangedListener(this);
             backStackEntry = getFragmentManager().getBackStackEntryCount();
 
-        }else{
+        } else {
             throw new IllegalStateException("FIntent controller can only be attached with FragmentActivity or Fragment ");
         }
 
@@ -67,9 +67,9 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     /**
      * Clears the complete back stack
      */
-    void clearBackStack(){
-        if(getFragmentManager().getBackStackEntryCount() >0){
-            getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(),FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    void clearBackStack() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStackImmediate(getFragmentManager().getBackStackEntryAt(0).getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
 
@@ -77,35 +77,39 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
         return containerId;
     }
 
+    public void setContainerId(int containerId) {
+        this.containerId = containerId;
+    }
 
     /**
      * Navigates to the previous FIntent state.
+     *
      * @param fIntentName the name of the FIntent {@link FIntent#FIntent(Class, String)}
      * @return
      */
     @Override
     public boolean navigateTo(String fIntentName) {
-        return getFragmentManager().popBackStackImmediate(fIntentName,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        return getFragmentManager().popBackStackImmediate(fIntentName, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     @Override
     public void onBackPressed() {
-        if(getFragmentManager().findFragmentById(containerId) instanceof IFIntentFragment){
+        if (getFragmentManager().findFragmentById(containerId) instanceof IFIntentFragment) {
             IFIntentFragment fragment = (IFIntentFragment) getFragmentManager().findFragmentById(containerId);
-            if(!fragment.onBackPressed()){
-                if(getFragmentManager().getBackStackEntryCount()==1){ //only if 1 item is there, simply finish the activity.
-                    if(isAttachedWithActivity){
+            if (!fragment.onBackPressed()) {
+                if (getFragmentManager().getBackStackEntryCount() == 1) { //only if 1 item is there, simply finish the activity.
+                    if (isAttachedWithActivity) {
                         containerActivityRef.get().finish();
-                    }else{
+                    } else {
                         //TODO: Handle for fragment
                     }
-                }else{
-                    ((IFIntentActivity)containerActivityRef.get()).callSuperBackPressed();
+                } else {
+                    ((IFIntentActivity) containerActivityRef.get()).callSuperBackPressed();
                 }
 
             }
-        }else {
-            ((IFIntentActivity)containerActivityRef.get()).callSuperBackPressed();
+        } else {
+            ((IFIntentActivity) containerActivityRef.get()).callSuperBackPressed();
         }
     }
 
@@ -130,42 +134,38 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     public int startFragmentForResult(FIntent fIntent, IFIntentFragment target, int requestCode) {
         FragmentTransaction fragmentTransaction = null;
         int uniqueTransactionId = -1;
-        if(isAttachedWithActivity){
-            fragmentTransaction = createFragmentTransaction(fIntent,directParentActivityRef.get().getSupportFragmentManager(),target, requestCode);
-        }else if(isAttachedWithFragment){
-            fragmentTransaction = createFragmentTransaction(fIntent,directFragmentRef.get().getChildFragmentManager(),target, requestCode);
+        if (isAttachedWithActivity) {
+            fragmentTransaction = createFragmentTransaction(fIntent, directParentActivityRef.get().getSupportFragmentManager(), target, requestCode);
+        } else if (isAttachedWithFragment) {
+            fragmentTransaction = createFragmentTransaction(fIntent, directFragmentRef.get().getChildFragmentManager(), target, requestCode);
         }
-        if(appStateWatcher.isAppVisible()){
+        if (appStateWatcher.isAppVisible()) {
             uniqueTransactionId = fragmentTransaction.commit();
-        }else{
+        } else {
             mPendingTransactions.add(fragmentTransaction);
         }
         return uniqueTransactionId;
     }
 
-    public void setContainerId(int containerId) {
-        this.containerId = containerId;
-    }
-
-    private FragmentManager getFragmentManager(){
-        if(isAttachedWithActivity){
+    private FragmentManager getFragmentManager() {
+        if (isAttachedWithActivity) {
             return directParentActivityRef.get().getSupportFragmentManager();
-        }else if(isAttachedWithFragment){
+        } else if (isAttachedWithFragment) {
             return directFragmentRef.get().getChildFragmentManager();
         }
         return null;
     }
 
-    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager,IFIntentFragment target, int requestCode){
+    private FragmentTransaction createFragmentTransaction(FIntent fIntent, FragmentManager fragmentManager, IFIntentFragment target, int requestCode) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction = fragmentTransaction.setCustomAnimations(fIntent.getEnterAnimation(), fIntent.getExitAnimation(),
                 fIntent.getPopEnterAnimation(), fIntent.getPopExitAnimation());
 
-        if(fIntent.hasClearHistoryFlag()){
-            if(fIntent.hasFragmentNameToLookFor()){
-                Log.w(TAG,"Clear history is not supported with fragment name. Silently ignoring the flag.");
-            }else{
+        if (fIntent.hasClearHistoryFlag()) {
+            if (fIntent.hasFragmentNameToLookFor()) {
+                Log.w(TAG, "Clear history is not supported with fragment name. Silently ignoring the flag.");
+            } else {
                 //Why we are committing new empty fragment >> to solve fragment animation issue.
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 final Fragment frg = new Fragment();
@@ -188,30 +188,30 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
 //        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0){
 //            fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTransactionName());
 //        }
-        if(fragmentManager.getBackStackEntryCount() == 0 && !fIntent.hasClearHistoryFlag()){ //For the first transaction, it is weired to show the animation.
-            fragmentTransaction.setCustomAnimations(0,0,0,0);
+        if (fragmentManager.getBackStackEntryCount() == 0 && !fIntent.hasClearHistoryFlag()) { //For the first transaction, it is weired to show the animation.
+            fragmentTransaction.setCustomAnimations(0, 0, 0, 0);
         }
         fragmentTransaction = fragmentTransaction.addToBackStack(fIntent.getTransactionName());
         Fragment fragmentToCommit;
-        if(fIntent.getFragmentNameToLookFor() != null){
+        if (fIntent.getFragmentNameToLookFor() != null) {
             fragmentToCommit = getFragmentManager().findFragmentByTag(fIntent.getFragmentNameToLookFor());
-        }else {
+        } else {
             fragmentToCommit = fIntent.createFragment();
         }
-        if(target != null){
-            fragmentToCommit.setTargetFragment((Fragment) target,requestCode);
+        if (target != null) {
+            fragmentToCommit.setTargetFragment((Fragment) target, requestCode);
         }
 
 
-            fragmentTransaction.replace(containerId,fragmentToCommit, ((IFIntentFragment)fragmentToCommit).uniqueFragmentName());
+        fragmentTransaction.replace(containerId, fragmentToCommit, ((IFIntentFragment) fragmentToCommit).uniqueFragmentName());
 
         return fragmentTransaction;
     }
 
     @Override
     public void onAppResumed(Activity activity) {
-        if(activity.equals(containerActivityRef.get())){
-            for(FragmentTransaction transaction : mPendingTransactions){
+        if (activity.equals(containerActivityRef.get())) {
+            for (FragmentTransaction transaction : mPendingTransactions) {
                 transaction.commit();
             }
             mPendingTransactions.clear();//TODO: Concurrent ArrayList can be used
@@ -222,6 +222,6 @@ class FIntentControllerImpl implements FIntentController,AppStateWatcher.Listene
     @Override
     public void onBackStackChanged() {
         backStackEntry = getFragmentManager().getBackStackEntryCount();
-        Log.d(TAG,"Back stack entry pointed to = "+backStackEntry);
+        Log.d(TAG, "Back stack entry pointed to = " + backStackEntry);
     }
 }

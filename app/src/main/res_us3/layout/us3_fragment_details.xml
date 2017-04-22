@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class = "BindingUS3FragmentDetails"/>
+
+    <data class="BindingUS3FragmentDetails" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/bg_fragment_d"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Details"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Navigate to Fruits List"
-            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/btnFrutisList"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="50dp"
+            android:text="Details"
+            android:textSize="30dp" />
 
         <Button
-            android:text="Navigate to Veg List"
-            android:layout_marginTop="5dp"
+            android:id="@+id/btnFrutisList"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="Navigate to Fruits List" />
+
+        <Button
             android:id="@+id/btnVegList"
             android:layout_width="300dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Finish"
-            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="Navigate to Veg List" />
+
+        <Button
             android:id="@+id/btnFinish"
             android:layout_width="300dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="Finish" />
 
     </LinearLayout>
 </layout>

@@ -17,7 +17,7 @@ import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
  * @since 12/4/17.
  */
 
-public class US6FragmentA extends FIntentFragment<BindingUS6FragmentA> implements View.OnClickListener,FIntentNames{
+public class US6FragmentA extends FIntentFragment<BindingUS6FragmentA> implements View.OnClickListener, FIntentNames {
 
     private static final int REQUEST_CODE = 1000;
 
@@ -25,7 +25,7 @@ public class US6FragmentA extends FIntentFragment<BindingUS6FragmentA> implement
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         binding.btnStartForResult.setOnClickListener(this);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Start For Result");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Start For Result");
     }
 
     @Override
@@ -35,18 +35,18 @@ public class US6FragmentA extends FIntentFragment<BindingUS6FragmentA> implement
 
     @Override
     public void onClick(View view) {
-        startFragmentForResult(new FIntent(US6FragmentB.class,US6FragmentA),REQUEST_CODE);
+        startFragmentForResult(new FIntent(US6FragmentB.class, US6FragmentA), REQUEST_CODE);
     }
 
 
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
         super.onFragmentResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
-            if(resultCode == OK){
-                ((EditText)getView().findViewById(R.id.edtResult)).setText("OK");
-            }else if(resultCode == CANCELLED){
-                ((EditText)getView().findViewById(R.id.edtResult)).setText("CANCELLED");
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == OK) {
+                ((EditText) getView().findViewById(R.id.edtResult)).setText("OK");
+            } else if (resultCode == CANCELLED) {
+                ((EditText) getView().findViewById(R.id.edtResult)).setText("CANCELLED");
             }
         }
 

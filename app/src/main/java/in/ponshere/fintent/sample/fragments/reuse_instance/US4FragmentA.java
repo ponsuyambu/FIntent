@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.FIntent;
+import in.ponshere.fintent.FIntentFragment;
 import in.ponshere.fintent.sample.R;
 import in.ponshere.fintent.sample.databinding.BindingUS4FragmentA;
 import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
@@ -16,7 +16,7 @@ import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
  * @since 12/4/17.
  */
 
-public class US4FragmentA extends FIntentFragment<BindingUS4FragmentA> implements View.OnClickListener,FIntentNames{
+public class US4FragmentA extends FIntentFragment<BindingUS4FragmentA> implements View.OnClickListener, FIntentNames {
 
     public static final String FINTENT_TAG = "";
     public static final String NAME = "US4FragmentA";
@@ -25,7 +25,7 @@ public class US4FragmentA extends FIntentFragment<BindingUS4FragmentA> implement
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         binding.btnNext.setOnClickListener(this);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Reuse Instance");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Reuse Instance");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class US4FragmentA extends FIntentFragment<BindingUS4FragmentA> implement
 
     @Override
     public void onClick(View view) {
-        startFragment(new FIntent(US4FragmentB.class,US4FragmentA));
+        startFragment(new FIntent(US4FragmentB.class, US4FragmentA));
     }
 
 

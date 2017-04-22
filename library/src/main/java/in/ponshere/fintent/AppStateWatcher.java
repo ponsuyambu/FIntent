@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  * Watcher class which tracks the activity's lifecycle. This class is used to store the pending transactions
  * when the application is in background.
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
@@ -22,16 +23,12 @@ class AppStateWatcher implements Application.ActivityLifecycleCallbacks {
     private boolean isAppVisible = false;
     private ArrayList<Listener> listeners = new ArrayList<>();
 
-    public void addListener(Listener listener){
-        if(!listeners.contains(listener)){
+    public void addListener(Listener listener) {
+        if (!listeners.contains(listener)) {
             listeners.add(listener);
-        }else{
-            Log.w(TAG,"Listener already exists");
+        } else {
+            Log.w(TAG, "Listener already exists");
         }
-    }
-
-    interface Listener{
-        void onAppResumed(Activity activity);
     }
 
     @Override
@@ -47,7 +44,7 @@ class AppStateWatcher implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityResumed(Activity activity) {
         isAppVisible = true;
-        for(Listener listener : listeners){
+        for (Listener listener : listeners) {
             listener.onAppResumed(activity);
         }
     }
@@ -74,5 +71,9 @@ class AppStateWatcher implements Application.ActivityLifecycleCallbacks {
 
     public boolean isAppVisible() {
         return isAppVisible;
+    }
+
+    interface Listener {
+        void onAppResumed(Activity activity);
     }
 }

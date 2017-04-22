@@ -14,7 +14,7 @@ import in.ponshere.fintent.sample.fragments.navigate_to.FIntentNames;
  * @since 12/4/17.
  */
 
-public class US2FragmentD extends FIntentFragment<BindingUS2FragmentD> implements View.OnClickListener, FIntentNames{
+public class US2FragmentD extends FIntentFragment<BindingUS2FragmentD> implements View.OnClickListener, FIntentNames {
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {

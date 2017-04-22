@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <data class = "BindingUS4FragmentA"/>
+
+    <data class="BindingUS4FragmentA" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/bg_fragment_a"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Fragment A"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:hint="Enter some text"
-            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:text="Fragment A"
+            android:textSize="30dp" />
+
+        <EditText
             android:id="@+id/edt"
             android:layout_width="200dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:hint="Enter some text" />
 
         <Button
-            android:text="Next Fragment"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
             android:id="@+id/btnNext"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="Next Fragment" />
 
     </LinearLayout>
 </layout>

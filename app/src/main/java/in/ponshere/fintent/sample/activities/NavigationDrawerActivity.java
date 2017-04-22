@@ -25,7 +25,7 @@ import in.ponshere.fintent.sample.fragments.reuse_instance.US4FragmentA;
 import in.ponshere.fintent.sample.fragments.start_for_result.US6FragmentA;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,IFIntentActivity {
+        implements NavigationView.OnNavigationItemSelectedListener, IFIntentActivity {
 
     FIntentController controller;
 
@@ -47,7 +47,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -55,17 +55,15 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
         //################### FIntent controller setup ######################
-        if(savedInstanceState == null || controller == null){
-            controller = FIntentFactory.getInstance().createFIntentController(this,R.id.rlContainer);
+        if (savedInstanceState == null || controller == null) {
+            controller = FIntentFactory.getInstance().createFIntentController(this, R.id.rlContainer);
         }
 
 
-
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             navigationView.setCheckedItem(R.id.navStartForResult);
-            controller.startFragment(new FIntent(US6FragmentA.class,"top_fragment"));
+            controller.startFragment(new FIntent(US6FragmentA.class, "top_fragment"));
         }
 
     }
@@ -86,27 +84,27 @@ public class NavigationDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.navBasic) {
-            controller.startFragment(new FIntent(US1FragmentA.class,"top_fragment")
-            .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
-            .setAnimationType(FIntent.AnimationType.NONE));
+            controller.startFragment(new FIntent(US1FragmentA.class, "top_fragment")
+                    .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
+                    .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navClearHistory) {
-            controller.startFragment(new FIntent(US2FragmentA.class,"top_fragment")
+            controller.startFragment(new FIntent(US2FragmentA.class, "top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navNavigateTo) {
-            controller.startFragment(new FIntent(US3FragmentA.class,"top_fragment")
+            controller.startFragment(new FIntent(US3FragmentA.class, "top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navReuseFragInstance) {
-            controller.startFragment(new FIntent(US4FragmentA.class,"top_fragment")
+            controller.startFragment(new FIntent(US4FragmentA.class, "top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navAnimations) {
-            controller.startFragment(new FIntent(US5FragmentA.class,"top_fragment")
+            controller.startFragment(new FIntent(US5FragmentA.class, "top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         } else if (id == R.id.navStartForResult) {
-            controller.startFragment(new FIntent(US6FragmentA.class,"top_fragment")
+            controller.startFragment(new FIntent(US6FragmentA.class, "top_fragment")
                     .addFlag(FIntent.FLAGS.CLEAR_HISTORY)
                     .setAnimationType(FIntent.AnimationType.NONE));
         }

@@ -13,7 +13,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS3FragmentDetails;
  * @since 12/4/17.
  */
 
-public class US3FragmentDetails extends FIntentFragment<BindingUS3FragmentDetails> implements View.OnClickListener,FIntentNames{
+public class US3FragmentDetails extends FIntentFragment<BindingUS3FragmentDetails> implements View.OnClickListener, FIntentNames {
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -31,11 +31,11 @@ public class US3FragmentDetails extends FIntentFragment<BindingUS3FragmentDetail
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if(id == R.id.btnFinish){
+        if (id == R.id.btnFinish) {
             finish();
-        }else if(id == R.id.btnFrutisList){
+        } else if (id == R.id.btnFrutisList) {
             navigateTo(FRUITS_SCREEN);
-        }else if(id == R.id.btnVegList){
+        } else if (id == R.id.btnVegList) {
             navigateTo(VEGETABLES_SCREEN);
         }
     }

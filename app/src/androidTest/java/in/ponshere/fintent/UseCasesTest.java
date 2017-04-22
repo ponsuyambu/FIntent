@@ -23,8 +23,10 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 /**
  * Espresso test case all use cases except animation use case.
+ *
  * @author Ponsuyambu
  * @since 19/4/17.
  */
@@ -38,10 +40,11 @@ public class UseCasesTest {
                 protected void beforeActivityLaunched() {
                     super.beforeActivityLaunched();
                     // Doing this in @Before generates a race condition.
-                }};
+                }
+            };
 
     @Test
-    public void testBasicUseCase(){
+    public void testBasicUseCase() {
         onView(withId(in.ponshere.fintent.sample.R.id.drawer_layout)).perform(DrawerActions.open());
         // Start the screen of your activity.
         onView(withId(in.ponshere.fintent.sample.R.id.nav_view))
@@ -52,7 +55,7 @@ public class UseCasesTest {
     }
 
     @Test
-    public void testClearHistoryUseCase(){
+    public void testClearHistoryUseCase() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         // Start the screen of your activity.
         onView(withId(R.id.nav_view))
@@ -70,7 +73,7 @@ public class UseCasesTest {
     }
 
     @Test
-    public void testNavigateTo(){
+    public void testNavigateTo() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         // Start the screen of your activity.
         onView(withId(R.id.nav_view))
@@ -101,12 +104,12 @@ public class UseCasesTest {
     }
 
     @Test
-    public void testReuseInstanceUseCase(){
+    public void testReuseInstanceUseCase() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
 
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.navReuseFragInstance));
-        onView(withId(R.id.edt)).perform(clearText(),typeText("test"));
+        onView(withId(R.id.edt)).perform(clearText(), typeText("test"));
         onView(withId(R.id.btnNext)).perform(click());
         onView(withText("Fragment B")).check(matches(isDisplayed()));
 
@@ -127,7 +130,7 @@ public class UseCasesTest {
     }
 
     @Test
-    public void testStartFragmentForResult(){
+    public void testStartFragmentForResult() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         onView(withId(R.id.nav_view))
                 .perform(NavigationViewActions.navigateTo(R.id.navStartForResult));
@@ -148,7 +151,7 @@ public class UseCasesTest {
 
 
     @Test
-    public void basicUse_orientation(){
+    public void basicUse_orientation() {
         onView(withId(in.ponshere.fintent.sample.R.id.drawer_layout)).perform(DrawerActions.open());
         // Start the screen of your activity.
         onView(withId(in.ponshere.fintent.sample.R.id.nav_view))

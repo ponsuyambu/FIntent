@@ -13,7 +13,7 @@ import in.ponshere.fintent.sample.databinding.BindingUS6FragmentB;
  * @since 12/4/17.
  */
 
-public class US6FragmentB extends FIntentFragment<BindingUS6FragmentB> implements View.OnClickListener{
+public class US6FragmentB extends FIntentFragment<BindingUS6FragmentB> implements View.OnClickListener {
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -30,11 +30,11 @@ public class US6FragmentB extends FIntentFragment<BindingUS6FragmentB> implement
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if(id == R.id.btnCancel){
-            setResult(CANCELLED,null);
-        }else {
-            if(id == R.id.btnOK){
-                setResult(OK,null);
+        if (id == R.id.btnCancel) {
+            setResult(CANCELLED, null);
+        } else {
+            if (id == R.id.btnOK) {
+                setResult(OK, null);
             }
         }
     }
