@@ -81,7 +81,58 @@ public class US1FragmentA extends FIntentFragment<BindingUS1FragmentA> implement
         startFragment(new FIntent(US1FragmentB.class,"AtoB"));
     }
 
-}
+}   
+```
+
+Examples
+==========
+1. Starting next fragment
+--------------------------
+```java
+startFragment(new FIntent(US1FragmentB.class,"FragA"));
+```
+
+2. Exit the current fragment
+--------------------------
+```java
+finish()
+```
+
+3. Clear History
+--------------------------
+```java
+startFragment(new FIntent(US2FragmentD.class,"FragC").addFlag(FIntent.FLAGS.CLEAR_HISTORY));
+```
+
+3. Transition Animation
+--------------------------
+```java
+startFragment(new FIntent(US1FragmentB.class,"FragA").setAnimationType(FIntent.AnimationType.SLIDE_UP_DOWN));
+```
+
+4. Start fragment for result
+--------------------------
+```java
+    static final int REQUEST_CODE = 1000;
+
+    public void onClick(View view) {
+        startFragmentForResult(new FIntent(US6FragmentB.class,US6FragmentA),REQUEST_CODE);
+    }
+
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+            if(resultCode == OK){
+
+            }else if(resultCode == CANCELLED){
+                
+            }
+        }
+
+    }
+
 ```
 
 Contributing
