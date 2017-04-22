@@ -15,11 +15,27 @@ Features
  6. Start fragment for Result
  7. Auto handling of Fragment commit when the app is not in foreground.
  
+Installation
+---------------
+**1. Add repo**
+```groovy
+repositories {
+    maven {
+        url  "http://dl.bintray.com/suyambu/android" 
+    }
+}
+```
+**2. Dependencies**
+```groovy
+dependencies {
+    compile 'in.ponshere:fintent:<version>'
+}
+```
  
 Implementation
 --------
 
-**1. Activity changes**
+**1. Setup FIntentController**
 ```java
 public class MainActivity extends AppCompatActivity implements IFIntentActivity {
     FIntentController controller;
@@ -27,10 +43,8 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        controller = Factory.getInstance().getController(this);
-        controller.setContainerId(R.id.rlContainer);
-        controller.startFragment(new FIntent(FragmentA.class));
-
+        controller = FIntentFactory.getInstance().createFIntentController(this,R.id.rlContainer);
+        controller.startFragment(new FIntent(US1FragmentB.class,"top_fragment"));
     }
 
     @Override
@@ -49,9 +63,7 @@ public class MainActivity extends AppCompatActivity implements IFIntentActivity 
 
 3. **Directly start using the FIntent APIs.**
 ```java
-public class FragmentA extends FIFragment<BindingFragmentA> implements View.OnClickListener{
-
-    public static final String FINTENT_TAG = "FragmentA";
+public class US1FragmentA extends FIntentFragment<BindingUS1FragmentA> implements View.OnClickListener{
 
     @Override
     protected void onViewCreated(@Nullable Bundle savedInstanceState) {
@@ -61,19 +73,14 @@ public class FragmentA extends FIFragment<BindingFragmentA> implements View.OnCl
 
     @Override
     public int getLayoutResourceId() {
-        return R.layout.fragment_a;
+        return R.layout.us1_fragment_a;
     }
 
     @Override
     public void onClick(View view) {
-        startFragment(new FIntent(US1FragmentB.class));
+        startFragment(new FIntent(US1FragmentB.class,"AtoB"));
     }
 
-//TODO: This method has been removed. Update readme.
-    @Override
-    public String uniqueFIntentTag() {
-        return FINTENT_TAG;
-    }
 }
 ```
 
