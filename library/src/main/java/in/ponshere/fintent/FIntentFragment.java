@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 /**
  * The base class for the fragment. All your fragment classes should extend this class.
  *
+ * This class also can have nested fragment with the help of FIntentController.
+ *
  * @author Ponsuyambu
  * @since 11/4/17.
  */
