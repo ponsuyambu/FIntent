@@ -62,8 +62,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
 
         if (savedInstanceState == null) {
-            navigationView.setCheckedItem(R.id.navStartForResult);
-            controller.startFragment(new FIntent(US6FragmentA.class, "top_fragment"));
+            navigationView.setCheckedItem(R.id.navBasic);
+            controller.startFragment(new FIntent(US1FragmentA.class, "top_fragment"));
         }
 
     }

@@ -28,7 +28,7 @@ repositories {
 **2. Dependencies**
 ```groovy
 dependencies {
-    compile 'in.ponshere:fintent:<version>'
+    compile 'in.ponshere:fintent:1.0'
 }
 ```
  
@@ -127,6 +127,7 @@ startFragment(new FIntent(US1FragmentB.class,"FragA").setAnimationType(FIntent.A
     }
 
 ```
+Please refer the sample app for complete samples.
 
 Contributing
 =============
